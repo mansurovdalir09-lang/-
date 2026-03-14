@@ -817,10 +817,11 @@ footer { padding:24px; }
   background:#0A0A0F;
   display:flex; align-items:center; justify-content:center;
   transition:opacity 0.7s ease, visibility 0.7s ease;
-  animation:loaderAutoHide 0.7s 3s ease forwards;
 }
-@keyframes loaderAutoHide { to { opacity:0; visibility:hidden; pointer-events:none; } }
-#loader.hidden { opacity:0; visibility:hidden; pointer-events:none; animation:none; }
+#loader.hidden { display:none !important; }
+/* CSS fallback: force hide loader after 5s even if JS is blocked */
+@keyframes loaderForceHide { 0%,99%{pointer-events:auto} 100%{opacity:0;visibility:hidden;pointer-events:none} }
+#loader { animation: loaderForceHide 0.01s 5s forwards; }
 .loader-inner { text-align:center; }
 .loader-logo {
   font-family:'Bebas Neue',sans-serif; font-size:52px;
@@ -1132,25 +1133,25 @@ footer { padding:24px; }
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <div class="hero-content">
-    <div class="hero-tag">
+  <div class="hero-content" style="opacity:1;visibility:visible;">
+    <div class="hero-tag" style="opacity:1;visibility:visible;">
       <span class="hero-dot"></span>
       <span data-i18n="hero.tag">Веб-дизайнер и разработчик · Доступен для проектов</span>
     </div>
-    <h1 class="hero-h1" id="heroH1">
+    <h1 class="hero-h1" id="heroH1" style="opacity:1;visibility:visible;color:#F0EDE8;">
       <span data-i18n="hero.h1_line1">ДАЛИР</span><br>
       <em data-i18n="hero.h1_line2_accent">МАН</em><span class="outline" data-i18n="hero.h1_line2_rest">СУРОВ</span>
     </h1>
-    <p class="hero-sub" data-i18n="hero.sub">
+    <p class="hero-sub" data-i18n="hero.sub" style="opacity:1;visibility:visible;color:#BFB9AF;">
       Создаю сайты, которые <strong>продают</strong>.<br>
       От маркетингового анализа до живого сайта — под ключ.<br>
       Ваш продукт заслуживает дизайна, который работает.
     </p>
-    <div class="hero-ctas">
+    <div class="hero-ctas" style="opacity:1;visibility:visible;">
       <a href="#portfolio" class="btn-gold" data-i18n="hero.btn1">Смотреть работы</a>
       <a href="#calculator" class="btn-ghost" data-i18n="hero.btn2">Рассчитать проект</a>
     </div>
-    <div class="hero-stats">
+    <div class="hero-stats" style="opacity:1;visibility:visible;">
       <div>
         <div class="hero-stat-n" data-count="3">0</div>
         <div class="hero-stat-l" data-i18n="hero.stat1_l">Проекта в портфолио</div>
