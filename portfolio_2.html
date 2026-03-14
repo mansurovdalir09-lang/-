@@ -1,1286 +1,2222 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Далир Мансуров — Веб-дизайнер и разработчик</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0d0d0d;
-      --surface: #141414;
-      --surface2: #1a1a1a;
-      --gold: #c9a84c;
-      --gold-light: #e2c270;
-      --rust: #c0392b;
-      --text: #e8e3da;
-      --text-muted: #7a7570;
-      --text-dim: #4a4540;
-      --border: #242424;
-      --font-head: 'Bebas Neue', sans-serif;
-      --font-serif: 'Cormorant Garamond', serif;
-      --font-body: 'Inter', sans-serif;
-      --font-ar: 'Noto Kufi Arabic', sans-serif;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    body.lang-ar {
-      direction: rtl;
-      font-family: var(--font-ar);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Далир Мансуров — Веб-дизайн и разработка сайтов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=DM+Sans:wght@300;400;500&family=Noto+Naskh+Arabic:wght@400;600;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:    #0A0A0F;
+  --ink2:   #12121A;
+  --ink3:   #1C1C28;
+  --gold:   #D4A843;
+  --gold2:  #F0C96A;
+  --sand:   #F0EDE8;
+  --sand2:  #BFB9AF;
+  --rust:   #8B3A2F;
+  --sage:   #2A4D3A;
+  --blue:   #1A2E4A;
+  --r: 0.4rem;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 
-    /* ─── CURSOR (desktop only, no mix-blend-mode) ─── */
-    #cursor, #cursor-ring { display: none; }
-    @media (hover: hover) and (pointer: fine) {
-      body { cursor: none; }
-      #cursor {
-        display: block;
-        position: fixed;
-        width: 8px; height: 8px;
-        background: var(--gold);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        transition: width 0.2s, height 0.2s;
-      }
-      #cursor-ring {
-        display: block;
-        position: fixed;
-        width: 32px; height: 32px;
-        border: 1px solid rgba(201,168,76,0.4);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9998;
-        transform: translate(-50%, -50%);
-        transition: all 0.12s ease;
-      }
-    }
+body {
+background: var(--ink);
+color: var(--sand);
+font-family: ‘DM Sans’, sans-serif;
+font-weight: 300;
+line-height: 1.6;
+cursor: none;
+overflow-x: hidden;
+}
 
-    /* ─── NAV ─── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 20px 48px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .lang-switcher {
-      display: flex;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    .lang-btn {
-      padding: 8px 16px;
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-family: var(--font-body);
-      font-size: 13px;
-      letter-spacing: 0.05em;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .lang-btn.active {
-      background: var(--surface2);
-      color: var(--text);
-    }
-    .nav-cta {
-      padding: 10px 24px;
-      background: transparent;
-      border: 1px solid var(--gold);
-      border-radius: 4px;
-      color: var(--gold);
-      font-family: var(--font-body);
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .nav-cta:hover { background: var(--gold); color: var(--bg); }
+/* ── CURSOR ── */
+#cursor {
+position: fixed; z-index: 99999; pointer-events: none;
+width: 10px; height: 10px; border-radius: 50%;
+background: var(--gold); mix-blend-mode: difference;
+transform: translate(-50%,-50%);
+transition: transform 0.1s, width 0.3s, height 0.3s;
+}
+#cursor-ring {
+position: fixed; z-index: 99998; pointer-events: none;
+width: 36px; height: 36px; border-radius: 50%;
+border: 1px solid rgba(212,168,67,0.4);
+transform: translate(-50%,-50%);
+transition: transform 0.18s ease-out, width 0.3s, height 0.3s, opacity 0.3s;
+}
+body:has(a:hover) #cursor { width:20px; height:20px; }
+body:has(a:hover) #cursor-ring { width:60px; height:60px; opacity:0.5; }
 
-    @media (max-width: 600px) {
-      nav { padding: 16px 20px; }
-    }
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius:2px; }
 
-    /* ─── HERO ─── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      background: var(--bg);
-    }
-    .hero-noise {
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      opacity: 0.4;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 100px 48px 60px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-    /* FIX #1 & #5: hero elements visible by default, animation via .js-loaded */
-    .hero-tag {
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      opacity: 1;
-    }
-    .hero-h1 {
-      font-family: var(--font-head);
-      font-size: clamp(72px, 10vw, 140px);
-      line-height: 0.92;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      margin-bottom: 32px;
-      opacity: 1;
-    }
-    .hero-h1 .accent { color: var(--gold); }
-    .hero-h1 .ghost {
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(232,227,218,0.15);
-    }
-    .hero-sub {
-      font-family: var(--font-serif);
-      font-size: clamp(16px, 2vw, 20px);
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 40px;
-      max-width: 480px;
-      opacity: 1;
-    }
-    .hero-sub strong { color: var(--text); font-style: italic; }
-    .hero-ctas {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      opacity: 1;
-    }
-    .btn-primary {
-      padding: 14px 32px;
-      background: var(--gold);
-      color: var(--bg);
-      border: none;
-      border-radius: 2px;
-      font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-primary:hover { background: var(--gold-light); }
-    .btn-outline {
-      padding: 14px 32px;
-      background: transparent;
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-outline:hover { border-color: var(--text-muted); color: var(--text); }
-    .hero-right { display: flex; flex-direction: column; justify-content: flex-end; }
-    .hero-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      opacity: 1;
-    }
-    .stat-item { border-left: 2px solid var(--gold); padding-left: 20px; }
-    .stat-num {
-      font-family: var(--font-head);
-      font-size: 56px;
-      line-height: 1;
-      color: var(--gold);
-    }
-    .stat-label {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
+/* ── NAV ── */
+nav {
+position: fixed; top:0; left:0; right:0; z-index:1000;
+display: flex; align-items: center; justify-content: space-between;
+padding: 20px 48px;
+background: linear-gradient(to bottom, rgba(10,10,15,0.95), transparent);
+backdrop-filter: blur(8px);
+}
+.nav-logo {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 22px; letter-spacing: 0.12em;
+color: var(--gold); text-decoration:none;
+}
+.nav-links { display:flex; gap:32px; list-style:none; }
+.nav-links a {
+font-size:12px; letter-spacing:0.18em; text-transform:uppercase;
+color: var(--sand2); text-decoration:none;
+transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+padding: 10px 22px;
+border: 1px solid rgba(212,168,67,0.4);
+color: var(--gold); font-size:11px;
+letter-spacing:0.18em; text-transform:uppercase;
+text-decoration:none; transition: all 0.2s;
+}
+.nav-cta:hover { background: rgba(212,168,67,0.1); border-color:var(--gold); }
 
-    /* JS-loaded animations */
-    .js-loaded .hero-tag { animation: heroSlide 0.9s ease forwards; }
-    .js-loaded .hero-h1 { animation: heroSlide 0.9s 0.1s ease forwards; }
-    .js-loaded .hero-sub { animation: heroSlide 0.9s 0.2s ease forwards; }
-    .js-loaded .hero-ctas { animation: heroSlide 0.9s 0.3s ease forwards; }
-    .js-loaded .hero-stats { animation: heroSlide 0.9s 0.4s ease forwards; }
+/* ── SECTION BASE ── */
+section { padding: 120px 48px; }
+.container { max-width: 1200px; margin: 0 auto; }
+.label {
+font-size:10px; letter-spacing:0.28em; text-transform:uppercase;
+color: var(--gold); opacity:0.7; margin-bottom:20px;
+display:flex; align-items:center; gap:12px;
+}
+.label::before { content:’’; width:32px; height:1px; background:var(--gold); opacity:0.5; }
 
-    @keyframes heroSlide {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+/* ── HERO ── */
+#hero {
+min-height: 100vh; padding: 0 48px;
+display: flex; align-items: center;
+position: relative; overflow: hidden;
+}
+.hero-bg {
+position: absolute; inset:0;
+background:
+radial-gradient(ellipse 80% 60% at 70% 40%, rgba(212,168,67,0.05) 0%, transparent 60%),
+radial-gradient(ellipse 50% 40% at 10% 80%, rgba(26,46,74,0.3) 0%, transparent 60%);
+}
+.hero-grid {
+position: absolute; inset:0; pointer-events:none;
+background-image:
+linear-gradient(rgba(212,168,67,0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(212,168,67,0.04) 1px, transparent 1px);
+background-size: 80px 80px;
+mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 80%);
+}
+.hero-content { position:relative; z-index:1; max-width:1200px; width:100%; margin:0 auto; }
+.hero-tag {
+display:inline-flex; align-items:center; gap:10px;
+padding:8px 16px; margin-bottom:48px;
+border:1px solid rgba(212,168,67,0.25);
+background: rgba(212,168,67,0.05);
+font-size:11px; letter-spacing:0.2em; text-transform:uppercase;
+color: var(--gold);
+animation: fadeIn 1s 0.3s both;
+}
+.hero-dot { width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 2s infinite; }
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
 
-    /* FIX #5: Mobile hero layout */
-    @media (max-width: 900px) {
-      .hero-content {
-        grid-template-columns: 1fr;
-        padding-top: 120px;
-        gap: 32px;
-      }
-      .hero-left { padding-right: 0; }
-      .hero-stats { flex-direction: row; flex-wrap: wrap; }
-      .stat-item { flex: 1; min-width: 120px; }
-    }
-    @media (max-width: 600px) {
-      .hero-content { padding: 100px 20px 40px; }
-      .hero-h1 { font-size: clamp(56px, 16vw, 100px); }
-    }
+.hero-h1 {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: clamp(72px, 10vw, 140px);
+line-height: 0.92; letter-spacing: 0.02em;
+color: var(--sand);
+animation: slideUp 1s 0.5s both;
+}
+.hero-h1 em { color: var(--gold); font-style: normal; }
+.hero-h1 .outline {
+-webkit-text-stroke: 1px rgba(240,237,232,0.3);
+color: transparent;
+}
 
-    /* ─── SECTIONS GENERAL ─── */
-    section { padding: 120px 48px; }
-    @media (max-width: 600px) { section { padding: 80px 20px; } }
-    .section-label {
-      font-size: 10px;
-      letter-spacing: 0.3em;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: none; }
+.hero-sub {
+max-width:540px; margin-top:32px;
+font-size:16px; font-weight:300; line-height:1.8;
+color: var(--sand2);
+animation: slideUp 1s 0.7s both;
+}
+.hero-sub strong { color:var(--sand); font-weight:400; }
 
-    /* ─── NOT MY WORK ─── */
-    .nomy-section { background: var(--surface); }
-    .nomy-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .big-no {
-      font-family: var(--font-head);
-      font-size: clamp(56px, 10vw, 120px);
-      line-height: 0.95;
-      color: var(--text);
-      margin-bottom: 60px;
-    }
-    .big-no span { color: var(--rust); }
-    .nomy-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-    .nomy-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 20px 24px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      background: var(--bg);
-      font-size: 15px;
-      color: var(--text-muted);
-      transition: all 0.2s;
-    }
-    .nomy-item:hover { border-color: var(--rust); color: var(--text); }
-    .nomy-icon { font-size: 24px; flex-shrink: 0; }
-    @media (max-width: 600px) {
-      .nomy-grid { grid-template-columns: 1fr; }
-    }
+.hero-ctas {
+display:flex; gap:16px; align-items:center;
+margin-top:48px;
+animation: slideUp 1s 0.9s both;
+}
+.btn-gold {
+padding:14px 32px;
+background: var(--gold);
+color: var(--ink); font-size:12px;
+letter-spacing:0.18em; text-transform:uppercase;
+font-weight:500; text-decoration:none;
+transition: all 0.2s;
+}
+.btn-gold:hover { background: var(--gold2); transform:translateY(-2px); }
+.btn-ghost {
+padding:14px 32px;
+border:1px solid rgba(240,237,232,0.2);
+color: var(--sand2); font-size:12px;
+letter-spacing:0.18em; text-transform:uppercase;
+text-decoration:none; transition: all 0.2s;
+}
+.btn-ghost:hover { border-color:var(--gold); color:var(--gold); }
 
-    /* ─── PROCESS ─── */
-    .process-section { background: var(--bg); }
-    .process-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .process-section h2 {
-      font-family: var(--font-head);
-      font-size: clamp(42px, 6vw, 80px);
-      color: var(--text);
-      margin-bottom: 64px;
-    }
-    .shredder-cards {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 48px;
-    }
-    .shred-card {
-      flex: 1;
-      min-width: 140px;
-      padding: 20px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .shred-card:hover { border-color: var(--gold); }
-    .shred-card .card-num {
-      font-family: var(--font-head);
-      font-size: 32px;
-      color: var(--text-dim);
-      display: block;
-      margin-bottom: 4px;
-    }
-    .shred-card .card-title {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-    .shred-card .card-icon { font-size: 20px; margin-bottom: 8px; }
+.hero-stats {
+display:flex; gap:48px; margin-top:80px;
+padding-top:40px; border-top:1px solid rgba(240,237,232,0.08);
+animation: slideUp 1s 1.1s both;
+}
+.hero-stat-n {
+font-family:‘Cormorant Garamond’,serif;
+font-size:48px; font-weight:600; color:var(--gold); line-height:1;
+}
+.hero-stat-l { font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--sand2); margin-top:4px; }
 
-    .process-detail {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 40px;
-      min-height: 200px;
-    }
-    .process-detail .detail-hint {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      color: var(--text-dim);
-      text-transform: uppercase;
-    }
-    .process-detail .detail-num {
-      font-family: var(--font-head);
-      font-size: 80px;
-      color: var(--text-dim);
-      line-height: 1;
-      margin: 16px 0 8px;
-    }
-    .process-detail .detail-title {
-      font-size: 20px;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-    .process-detail .detail-desc {
-      color: var(--text-muted);
-      font-size: 15px;
-      line-height: 1.7;
-    }
-    canvas#shredder-canvas { display: none; }
+.hero-scroll {
+position:absolute; bottom:40px; right:48px;
+display:flex; align-items:center; gap:10px;
+font-size:10px; letter-spacing:0.2em; text-transform:uppercase;
+color: var(--sand2); opacity:0.5;
+animation: fadeIn 1.5s 1.5s both;
+}
+.scroll-line { width:40px;height:1px;background:currentColor; animation:scrollAnim 2s ease-in-out infinite; }
+@keyframes scrollAnim { 0%{width:0;opacity:0}50%{width:40px;opacity:1}100%{width:0;opacity:0;transform:translateX(40px)} }
 
-    /* ─── ABOUT ─── */
-    .about-section { background: var(--surface); }
-    .about-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .about-section h2 {
-      font-family: var(--font-head);
-      font-size: clamp(42px, 5vw, 72px);
-      color: var(--text);
-      margin-bottom: 32px;
-    }
-    .about-text {
-      font-family: var(--font-serif);
-      font-size: clamp(17px, 2vw, 20px);
-      color: var(--text-muted);
-      line-height: 1.8;
-    }
-    .about-text p { margin-bottom: 20px; }
-    .about-right { display: flex; flex-direction: column; gap: 24px; }
-    .skill-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-    }
-    .skill-name { font-size: 14px; color: var(--text-muted); }
-    .skill-bar-wrap { width: 160px; height: 2px; background: var(--border); border-radius: 1px; }
-    .skill-bar { height: 100%; background: var(--gold); border-radius: 1px; }
-    @media (max-width: 900px) {
-      .about-inner { grid-template-columns: 1fr; gap: 48px; }
-    }
+@keyframes fadeIn { from{transform:translateY(12px)}to{transform:translateY(0)} }
+@keyframes slideUp { from{transform:translateY(32px)}to{transform:translateY(0)} }
 
-    /* ─── CALCULATOR ─── */
-    .calc-section { background: var(--bg); }
-    .calc-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .calc-section h2 {
-      font-family: var(--font-head);
-      font-size: clamp(42px, 6vw, 80px);
-      color: var(--text);
-      margin-bottom: 48px;
-    }
-    .calc-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-    .calc-option {
-      position: relative;
-      padding: 20px 24px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .calc-option input[type="radio"],
-    .calc-option input[type="checkbox"] {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
-    .calc-option:hover { border-color: var(--gold); }
-    .calc-option.selected { border-color: var(--gold); background: rgba(201,168,76,0.05); }
-    .calc-option-name {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-    .calc-option-meta {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-    .calc-option-price {
-      font-size: 13px;
-      color: var(--gold);
-      margin-top: 8px;
-    }
-    .calc-extras { margin-bottom: 32px; }
-    .calc-extras-title {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .extras-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .extra-tag {
-      padding: 8px 16px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      font-size: 13px;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .extra-tag:hover { border-color: var(--gold); color: var(--text); }
-    .extra-tag.selected { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.08); }
-    .calc-result {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 24px;
-      padding: 32px 40px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-    }
-    .calc-total-label {
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .calc-price {
-      font-family: var(--font-head);
-      font-size: 52px;
-      color: var(--gold);
-      line-height: 1;
-    }
-    .calc-deadline {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 6px;
-    }
-    @media (max-width: 600px) {
-      .calc-grid { grid-template-columns: 1fr; }
-      .calc-result { flex-direction: column; align-items: flex-start; }
-    }
+/* ── PROJECTS I BUILD ── */
+#what-i-do { background: var(--ink2); }
+.services-grid {
+display:grid; grid-template-columns:repeat(3, 1fr);
+gap: 1px; background: rgba(212,168,67,0.08);
+border:1px solid rgba(212,168,67,0.08);
+margin-top:64px;
+}
+.service-card {
+padding:40px 36px;
+background: var(--ink2);
+transition: background 0.3s;
+position:relative; overflow:hidden;
+}
+.service-card::before {
+content:’’; position:absolute; bottom:0;left:0;right:0;height:2px;
+background: var(--gold); transform:scaleX(0); transform-origin:left;
+transition: transform 0.4s;
+}
+.service-card:hover { background: rgba(212,168,67,0.03); }
+.service-card:hover::before { transform:scaleX(1); }
+.service-num { font-family:‘Bebas Neue’,serif; font-size:56px; color:rgba(212,168,67,0.15); line-height:1; }
+.service-title { font-family:‘Cormorant Garamond’,serif; font-size:24px; margin:12px 0 8px; color:var(--sand); }
+.service-desc { font-size:13px; color:var(--sand2); line-height:1.7; }
 
-    /* ─── CTA ─── */
-    .cta-section {
-      background: var(--surface);
-      text-align: center;
-      padding: 160px 48px;
-    }
-    /* FIX #6: line-height 1.1, word-break */
-    .cta-h2 {
-      font-family: var(--font-head);
-      font-size: clamp(52px, 8vw, 110px);
-      line-height: 1.1;
-      word-break: break-word;
-      color: var(--text);
-      margin-bottom: 24px;
-    }
-    .cta-h2 .accent { color: var(--gold); }
-    .cta-sub {
-      font-family: var(--font-serif);
-      font-size: clamp(16px, 2vw, 20px);
-      color: var(--text-muted);
-      margin-bottom: 48px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .cta-links {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    @media (max-width: 600px) {
-      .cta-section { padding: 100px 20px; }
-    }
+/* ── SHREDDER ── */
+#no-projects {
+background: var(--ink);
+position:relative; overflow:hidden;
+}
+.shredder-header { text-align:center; margin-bottom:64px; }
+.big-no {
+font-family:‘Bebas Neue’,sans-serif;
+font-size:clamp(60px,8vw,100px);
+color: var(--rust); letter-spacing:0.05em;
+text-shadow: 0 0 60px rgba(139,58,47,0.3);
+}
+.reject-grid {
+display:flex; flex-wrap:wrap; gap:16px;
+justify-content:center; margin-bottom:64px;
+}
+.reject-item {
+padding:12px 24px;
+background: rgba(139,58,47,0.08);
+border:1px solid rgba(139,58,47,0.25);
+color: var(--sand2); font-size:13px;
+cursor: pointer; position:relative;
+transition: all 0.2s; user-select:none;
+}
+.reject-item:hover { background:rgba(139,58,47,0.15); border-color:rgba(139,58,47,0.5); }
+.reject-item .strike {
+position:absolute; top:50%; left:0; right:0; height:1px;
+background:var(--rust); transform:scaleX(0) translateY(-50%);
+transform-origin:left; transition:transform 0.3s;
+}
+.reject-item:hover .strike { transform:scaleX(1) translateY(-50%); }
 
-    /* ─── CONTACTS ─── */
-    .contacts-section { background: var(--bg); }
-    .contacts-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .contacts-section h2 {
-      font-family: var(--font-head);
-      font-size: clamp(36px, 5vw, 64px);
-      color: var(--text);
-      margin-bottom: 48px;
-    }
-    .contact-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 15px;
-      transition: all 0.2s;
-    }
-    .contact-link:hover { color: var(--gold); }
-    .contact-icon { font-size: 20px; }
-    .contact-label { font-size: 12px; color: var(--text-dim); letter-spacing: 0.1em; margin-left: auto; }
+#shredder-canvas {
+width:100%; height:320px; max-width:800px;
+margin:0 auto; display:block;
+border:1px solid rgba(139,58,47,0.2);
+border-radius:2px;
+background: rgba(12,10,18,0.9);
+}
+.shredder-label {
+text-align:center; margin-top:20px;
+font-size:11px; letter-spacing:0.2em; text-transform:uppercase;
+color:rgba(139,58,47,0.6);
+}
 
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-      padding: 32px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-    footer p { font-size: 13px; color: var(--text-dim); }
-    @media (max-width: 600px) { footer { padding: 24px 20px; } }
+/* ── METHODOLOGY ── */
+#methodology { background: var(--ink3); }
+.method-grid {
+display:grid; grid-template-columns:1fr 1fr;
+gap:2px; margin-top:64px;
+background: rgba(240,237,232,0.04);
+}
+.method-step {
+display:flex; gap:24px; align-items:flex-start;
+padding:40px 36px;
+background: var(--ink3);
+opacity:0.4; transition:all 0.5s;
+position:relative;
+}
+.method-step.active { opacity:1; background:rgba(212,168,67,0.03); }
+.method-step.active .step-num { color:var(--gold); }
+.method-step.active .step-bar { background:var(--gold); }
+.step-num {
+font-family:‘Bebas Neue’,sans-serif; font-size:56px;
+color:rgba(240,237,232,0.12); line-height:1; flex-shrink:0;
+transition:color 0.4s;
+}
+.step-bar {
+position:absolute; top:0; left:0;
+width:3px; height:0;
+background:var(--gold); transition:height 0.5s;
+}
+.method-step.active .step-bar { height:100%; }
+.step-body {}
+.step-title { font-size:18px; font-weight:500; color:var(--sand); margin-bottom:8px; }
+.step-desc { font-size:13px; color:var(--sand2); line-height:1.7; }
+.step-icon { font-size:24px; margin-bottom:12px; }
 
-    /* ─── ARABIC FONT ─── */
-    .lang-ar .hero-tag,
-    .lang-ar .hero-h1,
-    .lang-ar .hero-sub,
-    .lang-ar .stat-label,
-    .lang-ar .section-label,
-    .lang-ar .nomy-item,
-    .lang-ar .calc-option-name,
-    .lang-ar .calc-option-meta,
-    .lang-ar nav,
-    .lang-ar .contact-link {
-      font-family: var(--font-ar);
-    }
-    .lang-ar .big-no {
-      font-family: var(--font-ar);
-      font-size: clamp(36px, 8vw, 100px);
-    }
-    .lang-ar .stat-item { border-left: none; border-right: 2px solid var(--gold); padding-left: 0; padding-right: 20px; }
-    .lang-ar .contact-label { margin-left: 0; margin-right: auto; }
-  </style>
+/* ── CALCULATOR ── */
+#calculator { background: var(--ink2); }
+.calc-wrap {
+max-width:860px; margin:64px auto 0;
+border:1px solid rgba(212,168,67,0.15);
+padding:56px;
+background: linear-gradient(135deg, rgba(212,168,67,0.03), transparent);
+}
+.calc-row { margin-bottom:32px; }
+.calc-label {
+font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+color:var(--sand2); margin-bottom:12px; display:flex; justify-content:space-between;
+}
+.calc-label span { color:var(--gold); font-size:14px; letter-spacing:0; }
+input[type=range] {
+width:100%; height:2px; -webkit-appearance:none;
+background: rgba(212,168,67,0.2); outline:none; cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+-webkit-appearance:none; width:16px; height:16px; border-radius:50%;
+background:var(--gold); cursor:pointer;
+box-shadow:0 0 12px rgba(212,168,67,0.4);
+}
+.calc-toggles { display:flex; flex-wrap:wrap; gap:8px; }
+.calc-toggle {
+padding:8px 16px; font-size:12px; letter-spacing:0.1em;
+border:1px solid rgba(212,168,67,0.2); color:var(--sand2);
+cursor:pointer; transition:all 0.2s; user-select:none;
+}
+.calc-toggle.on {
+background:rgba(212,168,67,0.1); border-color:var(--gold); color:var(--gold);
+}
+.calc-result {
+margin-top:40px; padding-top:40px;
+border-top:1px solid rgba(212,168,67,0.15);
+display:flex; justify-content:space-between; align-items:center;
+flex-wrap:wrap; gap:24px;
+}
+.calc-price {
+font-family:‘Bebas Neue’,sans-serif;
+font-size:72px; color:var(--gold); line-height:1;
+}
+.calc-time {
+font-family:‘Cormorant Garamond’,serif; font-size:22px;
+color:var(--sand2); font-style:italic;
+}
+.calc-price-label { font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--sand2); }
+
+/* ── PORTFOLIO ── */
+#portfolio { background: var(--ink); }
+.portfolio-grid {
+display:grid; grid-template-columns:repeat(3,1fr);
+gap:2px; margin-top:64px;
+background: rgba(240,237,232,0.04);
+}
+.project-card {
+position:relative; overflow:hidden; aspect-ratio:4/5;
+background:var(--ink2); cursor:pointer;
+}
+.project-thumb {
+position:absolute; inset:0;
+display:flex; align-items:center; justify-content:center;
+font-size:80px; opacity:0.06;
+transition:opacity 0.4s, transform 0.6s;
+}
+.project-card:hover .project-thumb { opacity:0.1; transform:scale(1.05); }
+.project-info {
+position:absolute; bottom:0; left:0; right:0;
+padding:32px 28px;
+background:linear-gradient(to top, rgba(10,10,15,0.97), transparent);
+transform:translateY(20px); opacity:0;
+transition:all 0.4s;
+}
+.project-card:hover .project-info { transform:translateY(0); opacity:1; }
+.project-always {
+position:absolute; bottom:0; left:0; right:0;
+padding:28px; background:linear-gradient(to top, rgba(10,10,15,0.95) 40%, transparent);
+}
+.project-tag {
+font-size:9px; letter-spacing:0.25em; text-transform:uppercase;
+color:var(--gold); margin-bottom:6px;
+}
+.project-name { font-family:‘Cormorant Garamond’,serif; font-size:22px; color:var(--sand); }
+.project-detail { font-size:12px; color:var(--sand2); margin-top:8px; }
+.project-link {
+display:inline-flex; align-items:center; gap:8px;
+margin-top:16px; font-size:11px; letter-spacing:0.15em; text-transform:uppercase;
+color:var(--gold); text-decoration:none;
+}
+.project-overlay-bg {
+position:absolute; inset:0;
+transition:opacity 0.5s;
+}
+
+/* Project color themes */
+.project-card.aravia { –proj-color: #6B3FA0; }
+.project-card.milana { –proj-color: #8B5E4A; }
+.project-card.rehab  { –proj-color: #1A4A3A; }
+
+.project-card .project-overlay-bg {
+background: linear-gradient(135deg, rgba(0,0,0,0) 0%, rgba(var(--proj-r,100),var(--proj-g,60),var(--proj-b,160),0.15) 100%);
+opacity:0;
+}
+.project-card:hover .project-overlay-bg { opacity:1; }
+.project-accent { position:absolute; top:24px;right:24px; width:40px;height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; }
+.project-card.aravia .project-accent { background:rgba(107,63,160,0.2); border:1px solid rgba(107,63,160,0.4); }
+.project-card.milana .project-accent { background:rgba(139,94,74,0.2); border:1px solid rgba(139,94,74,0.4); }
+.project-card.rehab  .project-accent { background:rgba(26,74,58,0.2); border:1px solid rgba(26,74,58,0.4); }
+
+/* ── PROJECT MODAL ── */
+#modal-overlay {
+position:fixed; inset:0; z-index:2000;
+background:rgba(5,5,10,0.96);
+display:none; overflow-y:auto;
+animation:modalIn 0.4s ease both;
+}
+#modal-overlay.open { display:block; }
+@keyframes modalIn { from{opacity:0}to{opacity:1} }
+.modal-inner { max-width:1000px; margin:0 auto; padding:100px 48px 80px; }
+.modal-close {
+position:fixed; top:32px; right:48px;
+font-size:28px; cursor:pointer; color:var(--sand2);
+transition:color 0.2s; z-index:2001;
+}
+.modal-close:hover { color:var(--gold); }
+.modal-tag { font-size:10px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+.modal-title {
+font-family:‘Bebas Neue’,sans-serif;
+font-size:clamp(48px,6vw,80px); letter-spacing:0.03em;
+color:var(--sand); line-height:0.95; margin-bottom:32px;
+}
+.modal-meta { display:flex; gap:40px; flex-wrap:wrap; margin-bottom:48px; }
+.modal-meta-item { }
+.modal-meta-label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--sand2); opacity:0.5; }
+.modal-meta-val { font-size:15px; color:var(--sand); margin-top:4px; }
+.modal-divider { height:1px; background:rgba(240,237,232,0.08); margin:40px 0; }
+.modal-section-title { font-family:‘Cormorant Garamond’,serif; font-size:28px; color:var(--gold); margin-bottom:20px; font-style:italic; }
+.modal-text { font-size:15px; line-height:1.85; color:var(--sand2); max-width:700px; }
+.modal-steps { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:24px; }
+.modal-step {
+padding:24px; border-left:2px solid;
+background:rgba(240,237,232,0.02);
+}
+.modal-step-n { font-family:‘Bebas Neue’,sans-serif; font-size:40px; opacity:0.15; }
+.modal-step-t { font-size:14px; font-weight:500; color:var(--sand); margin-bottom:6px; }
+.modal-step-d { font-size:12px; color:var(--sand2); line-height:1.6; }
+.modal-link {
+display:inline-flex; align-items:center; gap:8px; margin-top:32px;
+padding:14px 28px; border:1px solid rgba(212,168,67,0.3);
+color:var(--gold); font-size:12px; letter-spacing:0.15em; text-transform:uppercase;
+text-decoration:none; transition:all 0.2s;
+}
+.modal-link:hover { background:rgba(212,168,67,0.08); }
+
+/* ── ARABIC SECTION ── */
+#arabic {
+background: linear-gradient(135deg, #0D1A12 0%, #0A1020 50%, #150D1E 100%);
+direction:rtl; text-align:right;
+padding:120px 48px;
+position:relative; overflow:hidden;
+}
+.arabic-bg-pattern {
+position:absolute; inset:0; pointer-events:none; opacity:0.03;
+background-image: url(“data:image/svg+xml,%3Csvg width=‘60’ height=‘60’ viewBox=‘0 0 60 60’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cg fill=‘none’ fill-rule=‘evenodd’%3E%3Cg fill=’%23D4A843’ fill-opacity=‘1’%3E%3Cpath d=‘M30 0L60 30L30 60L0 30Z’/%3E%3C/g%3E%3C/g%3E%3C/svg%3E”);
+background-size:60px 60px;
+}
+.arabic-accent { position:absolute; top:60px; left:60px; font-size:200px; opacity:0.04; font-family:‘Noto Naskh Arabic’,serif; color:var(--gold); line-height:1; pointer-events:none; }
+.arabic-label {
+font-family:‘Cairo’,sans-serif; font-size:12px; letter-spacing:0.1em;
+color:var(--gold); opacity:0.7; margin-bottom:24px;
+display:flex; align-items:center; gap:12px; justify-content:flex-end;
+}
+.arabic-label::after { content:’’; width:32px; height:1px; background:var(--gold); opacity:0.5; }
+.arabic-h2 {
+font-family:‘Noto Naskh Arabic’,serif;
+font-size:clamp(36px,5vw,64px); font-weight:700;
+color:var(--sand); line-height:1.3; margin-bottom:24px;
+}
+.arabic-h2 em { color:var(--gold); font-style:normal; }
+.arabic-sub {
+font-family:‘Cairo’,sans-serif; font-size:16px; font-weight:300;
+color:var(--sand2); line-height:2; max-width:620px; margin-right:0; margin-left:auto;
+margin-bottom:48px;
+}
+.arabic-bio {
+font-family:‘Cairo’,sans-serif; font-size:14px;
+color:var(--sand2); line-height:2; max-width:580px; margin-left:auto;
+}
+.arabic-bio strong { color:var(--gold); font-weight:600; }
+.arabic-badges { display:flex; gap:16px; flex-wrap:wrap; margin-top:32px; justify-content:flex-end; }
+.arabic-badge {
+padding:10px 20px;
+border:1px solid rgba(212,168,67,0.25);
+background:rgba(212,168,67,0.05);
+font-family:‘Cairo’,sans-serif; font-size:13px;
+color:var(--sand2);
+}
+.arabic-values { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:64px; background:rgba(212,168,67,0.06); }
+.arabic-value {
+padding:32px 28px;
+background:rgba(10,10,15,0.5);
+text-align:center;
+}
+.arabic-value-icon { font-size:28px; margin-bottom:12px; }
+.arabic-value-title { font-family:‘Noto Naskh Arabic’,serif; font-size:18px; color:var(--gold); margin-bottom:8px; }
+.arabic-value-text { font-family:‘Cairo’,sans-serif; font-size:13px; color:var(--sand2); line-height:1.7; }
+
+/* ── ABOUT ── */
+#about { background:var(--ink3); }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; margin-top:64px; }
+.about-h2 { font-family:‘Bebas Neue’,sans-serif; font-size:clamp(48px,5vw,72px); color:var(--sand); line-height:0.95; margin-bottom:24px; }
+.about-h2 em { color:var(--gold); font-style:normal; }
+.about-text { font-size:15px; line-height:1.85; color:var(--sand2); }
+.about-text + .about-text { margin-top:16px; }
+.about-right { padding-top:8px; }
+.skills-list { margin-top:32px; }
+.skill-item {
+display:flex; align-items:center; justify-content:space-between;
+padding:14px 0; border-bottom:1px solid rgba(240,237,232,0.06);
+}
+.skill-name { font-size:13px; letter-spacing:0.08em; color:var(--sand); }
+.skill-bar-wrap { width:160px; height:2px; background:rgba(240,237,232,0.08); }
+.skill-bar { height:100%; background:var(--gold); transition:width 1.5s ease; }
+.stack-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:32px; }
+.stack-tag {
+padding:6px 14px; font-size:11px; letter-spacing:0.12em;
+border:1px solid rgba(240,237,232,0.1); color:var(--sand2);
+}
+
+/* ── CTA ── */
+#cta {
+background: var(--ink);
+text-align:center; padding:160px 48px;
+position:relative; overflow:hidden;
+}
+.cta-glow {
+position:absolute; top:50%;left:50%; transform:translate(-50%,-50%);
+width:600px; height:600px; border-radius:50%;
+background:radial-gradient(circle, rgba(212,168,67,0.06) 0%, transparent 70%);
+pointer-events:none;
+}
+.cta-h2 {
+font-family:‘Bebas Neue’,sans-serif;
+font-size:clamp(60px,8vw,110px); letter-spacing:0.03em;
+color:var(--sand); line-height:0.92; margin-bottom:32px;
+position:relative;
+}
+.cta-h2 em { color:var(--gold); font-style:normal; }
+.cta-sub { font-size:16px; color:var(--sand2); margin-bottom:48px; max-width:500px; margin-left:auto; margin-right:auto; }
+.cta-contacts { display:flex; justify-content:center; gap:32px; flex-wrap:wrap; margin-top:60px; }
+.cta-contact { font-size:13px; color:var(--sand2); text-decoration:none; letter-spacing:0.1em; transition:color 0.2s; }
+.cta-contact:hover { color:var(--gold); }
+
+/* ── FOOTER ── */
+footer {
+padding:40px 48px;
+border-top:1px solid rgba(240,237,232,0.06);
+display:flex; justify-content:space-between; align-items:center;
+flex-wrap:wrap; gap:16px;
+}
+.footer-copy { font-size:12px; color:var(--sand2); opacity:0.4; letter-spacing:0.05em; }
+.footer-made { font-size:12px; color:var(--sand2); opacity:0.4; }
+
+/* ── INTERSECTION REVEAL ── */
+.reveal { opacity:0; transform:translateY(40px); transition:all 0.8s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ── BURGER MENU ── */
+.burger {
+display:none; flex-direction:column; gap:5px; cursor:pointer;
+padding:8px; z-index:1100; background:none; border:none;
+}
+.burger span {
+display:block; width:24px; height:2px;
+background:var(--sand); transition:all 0.3s ease;
+}
+.burger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.burger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+.mobile-nav {
+display:none; position:fixed; inset:0; z-index:1050;
+background:rgba(10,10,15,0.98); backdrop-filter:blur(20px);
+flex-direction:column; align-items:center; justify-content:center;
+gap:48px; opacity:0; transition:opacity 0.3s;
+}
+.mobile-nav.open { display:flex; opacity:1; }
+.mobile-nav a {
+font-family:‘Bebas Neue’,sans-serif; font-size:clamp(32px,8vw,52px);
+letter-spacing:0.08em; color:var(--sand); text-decoration:none;
+transition:color 0.2s; position:relative;
+}
+.mobile-nav a::after {
+content:’’; position:absolute; bottom:-4px; left:0; right:0;
+height:1px; background:var(--gold); transform:scaleX(0);
+transition:transform 0.3s; transform-origin:left;
+}
+.mobile-nav a:hover { color:var(--gold); }
+.mobile-nav a:hover::after { transform:scaleX(1); }
+.mobile-nav .mobile-cta {
+padding:14px 40px; background:var(--gold); color:var(--ink);
+font-family:‘Bebas Neue’,sans-serif; font-size:20px; letter-spacing:0.15em;
+}
+
+/* ── LANG SWITCHER ── */
+.lang-switcher {
+display:flex; align-items:center; gap:6px;
+border:1px solid rgba(212,168,67,0.2); padding:6px 14px;
+margin-left:8px;
+}
+.lang-btn {
+background:none; border:none; cursor:pointer;
+font-size:12px; letter-spacing:0.1em; color:var(--sand2);
+transition:color 0.2s; font-family:‘Cairo’,sans-serif;
+padding:2px 4px;
+}
+.lang-btn:hover { color:var(--gold); }
+.lang-sep { color:rgba(212,168,67,0.3); font-size:10px; }
+.lang-ru #btnRu, .lang-ar #btnAr { color:var(--gold); border-bottom:1px solid var(--gold); }
+
+/* ── LANG AR OVERRIDES ── */
+.lang-ar { direction:rtl; }
+.lang-ar nav { flex-direction:row-reverse; }
+.lang-ar .nav-links { flex-direction:row-reverse; }
+.lang-ar .hero-content { text-align:right; }
+.lang-ar .hero-ctas { flex-direction:row-reverse; justify-content:flex-end; }
+.lang-ar .hero-stats { flex-direction:row-reverse; }
+.lang-ar .label { flex-direction:row-reverse; }
+.lang-ar .label::before { display:none; }
+.lang-ar .label::after { content:’’; width:32px; height:1px; background:var(--gold); opacity:0.5; }
+.lang-ar * { letter-spacing:0 !important; }
+/* Body text → Cairo */
+.lang-ar body { line-height:1.9; font-family:‘Cairo’,sans-serif; }
+/* Big headings → Noto Naskh Arabic */
+.lang-ar .hero-h1 { font-family:‘Noto Naskh Arabic’,serif !important; font-size:clamp(52px,8vw,110px); line-height:1.25; }
+.lang-ar h2,
+.lang-ar .about-h2,
+.lang-ar .cta-h2 { font-family:‘Noto Naskh Arabic’,serif !important; line-height:1.3; }
+/* Decorative large numbers keep Bebas */
+.lang-ar .hero-stat-n,
+.lang-ar .step-num,
+.lang-ar .service-num,
+.lang-ar .calc-price,
+.lang-ar .modal-step-n { font-family:‘Bebas Neue’,sans-serif !important; }
+/* All UI + body text → Cairo */
+.lang-ar .nav-links a,
+.lang-ar .nav-logo,
+.lang-ar .nav-cta,
+.lang-ar .btn-gold,
+.lang-ar .btn-ghost,
+.lang-ar .label,
+.lang-ar .hero-tag,
+.lang-ar .hero-sub,
+.lang-ar .hero-stat-l,
+.lang-ar .service-title,
+.lang-ar .service-desc,
+.lang-ar .step-title,
+.lang-ar .step-desc,
+.lang-ar .about-text,
+.lang-ar .skill-name,
+.lang-ar .cta-sub,
+.lang-ar .cta-contact,
+.lang-ar .modal-text,
+.lang-ar .modal-meta-val,
+.lang-ar .modal-step-t,
+.lang-ar .modal-step-d,
+.lang-ar .calc-label,
+.lang-ar .calc-time,
+.lang-ar .footer-copy,
+.lang-ar .footer-made { font-family:‘Cairo’,sans-serif !important; }
+/* Modal section titles → Noto Naskh */
+.lang-ar .modal-section-title { font-family:‘Noto Naskh Arabic’,serif !important; }
+/* Italic in Arabic → just gold color, no italic */
+.lang-ar em { font-style:normal; color:var(--gold); }
+/* Layout fixes */
+.lang-ar .calc-wrap { direction:rtl; }
+.lang-ar .calc-toggles { justify-content:flex-end; }
+.lang-ar .calc-result { flex-direction:row-reverse; }
+.lang-ar .about-grid { direction:rtl; }
+.lang-ar .modal-steps { direction:rtl; }
+.lang-ar .skill-bar { transform-origin:right; }
+.lang-ar footer { flex-direction:row-reverse; }
+/* Arabic section: show only in AR mode */
+#arabic { display:none; }
+.lang-ar #arabic { display:block !important; }
+
+/* ── AR LOGO STYLE ── */
+.lang-ar .nav-logo {
+font-family: ‘Noto Naskh Arabic’, serif !important;
+font-size: 20px;
+letter-spacing: 0 !important;
+}
+
+/* ── SPACING IMPROVEMENTS ── */
+.service-card { padding: 48px 36px; }
+.method-step { padding: 48px 36px; }
+.hero-stats { margin-top: 96px; padding-top: 48px; }
+.hero-sub { margin-top: 36px; }
+.hero-ctas { margin-top: 52px; }
+.hero-tag { margin-bottom: 56px; }
+.services-grid { margin-top: 72px; }
+.portfolio-grid { gap: 4px; }
+.calc-row { margin-bottom: 40px; }
+.calc-result { margin-top: 48px; padding-top: 48px; }
+.calc-toggle { padding: 10px 20px; }
+.modal-meta { margin-bottom: 56px; }
+.modal-divider { margin: 48px 0; }
+section { padding: 140px 48px; }
+#hero { padding: 0 48px; }
+.reject-grid { gap: 12px; margin-bottom: 72px; }
+.reject-item { padding: 14px 28px; font-size: 14px; }
+.arabic-values { margin-top: 80px; gap: 4px; }
+.arabic-value { padding: 40px 32px; }
+.about-grid { gap: 96px; margin-top: 72px; }
+.skills-list { margin-top: 40px; }
+.skill-item { padding: 18px 0; }
+.stack-tags { gap: 10px; margin-top: 40px; }
+.cta-sub { margin-bottom: 56px; }
+
+/* Lang-ar extra spacing */
+.lang-ar section { padding: 140px 48px; }
+.lang-ar .hero-h1 { line-height: 1.3; }
+.lang-ar .service-card { padding: 48px 36px; }
+.lang-ar .method-step { padding: 48px 36px; }
+.lang-ar .service-desc,
+.lang-ar .step-desc,
+.lang-ar .about-text { line-height: 2.1; }
+.lang-ar .hero-sub { line-height: 2.2; margin-top: 40px; }
+.lang-ar .cta-sub { line-height: 2.1; }
+.lang-ar .step-title { font-size: 17px; margin-bottom: 12px; }
+.lang-ar .service-title { font-size: 22px; margin-bottom: 14px; }
+#modal-overlay.theme-aravia {
+background: linear-gradient(160deg, #0D0514 0%, #1A0A2E 40%, #0D0A14 100%);
+}
+#modal-overlay.theme-aravia .modal-close { color: #BFA0E8; }
+#modal-overlay.theme-aravia .modal-close:hover { color: #C9A96E; }
+#modal-overlay.theme-aravia::before {
+content:’’; position:fixed; inset:0; pointer-events:none; z-index:0;
+background:
+radial-gradient(ellipse 60% 50% at 80% 20%, rgba(107,63,160,0.25) 0%, transparent 60%),
+radial-gradient(ellipse 40% 40% at 10% 80%, rgba(201,169,110,0.08) 0%, transparent 60%);
+}
+#modal-overlay.theme-aravia .modal-inner { position:relative; z-index:1; }
+#modal-overlay.theme-aravia .modal-section-title { font-family:‘Playfair Display’,serif; }
+#modal-overlay.theme-aravia .modal-title { font-family:‘Playfair Display’,serif; font-size:clamp(36px,5vw,64px); }
+#modal-overlay.theme-aravia .modal-step {
+background: rgba(107,63,160,0.06);
+border-left-color: rgba(107,63,160,0.5) !important;
+}
+#modal-overlay.theme-aravia .modal-calligraphy {
+position:fixed; top:80px; right:60px; font-size:180px; opacity:0.04;
+font-family:‘Noto Naskh Arabic’,serif; color:#C9A96E;
+line-height:1; pointer-events:none; z-index:0;
+}
+
+#modal-overlay.theme-milana {
+background: linear-gradient(160deg, #1A0E0A 0%, #2A1510 40%, #0A0A0F 100%);
+}
+#modal-overlay.theme-milana::before {
+content:’’; position:fixed; inset:0; pointer-events:none; z-index:0;
+background:
+radial-gradient(ellipse 60% 50% at 70% 30%, rgba(139,94,74,0.2) 0%, transparent 60%),
+radial-gradient(ellipse 40% 40% at 20% 80%, rgba(245,230,218,0.04) 0%, transparent 60%);
+}
+#modal-overlay.theme-milana .modal-inner { position:relative; z-index:1; }
+#modal-overlay.theme-milana .modal-step {
+background: rgba(139,94,74,0.06);
+border-left-color: rgba(139,94,74,0.5) !important;
+}
+#modal-overlay.theme-milana .modal-title { font-family:‘Cormorant Garamond’,serif; font-size:clamp(36px,5vw,72px); font-style:italic; }
+
+#modal-overlay.theme-rehab {
+background: linear-gradient(160deg, #050F08 0%, #0A1E14 40%, #0A0A0F 100%);
+}
+#modal-overlay.theme-rehab::before {
+content:’’; position:fixed; inset:0; pointer-events:none; z-index:0;
+background:
+radial-gradient(ellipse 60% 50% at 20% 30%, rgba(26,74,58,0.3) 0%, transparent 60%),
+radial-gradient(ellipse 40% 40% at 80% 80%, rgba(200,230,200,0.04) 0%, transparent 60%);
+}
+#modal-overlay.theme-rehab .modal-inner { position:relative; z-index:1; }
+#modal-overlay.theme-rehab .modal-step {
+background: rgba(26,74,58,0.08);
+border-left-color: rgba(26,74,58,0.6) !important;
+}
+#modal-overlay.theme-rehab .modal-title { letter-spacing:0.08em; }
+#modal-overlay.theme-rehab .modal-tag { color:#5CA882; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+nav { padding:16px 24px; }
+.nav-links { display:none; }
+.burger { display:flex; }
+section { padding:80px 24px; }
+#hero { padding:0 24px; }
+.hero-stats { flex-wrap:wrap; gap:24px; }
+.services-grid { grid-template-columns:1fr; }
+.method-grid { grid-template-columns:1fr; }
+.portfolio-grid { grid-template-columns:1fr; }
+.about-grid { grid-template-columns:1fr; gap:40px; }
+.modal-steps { grid-template-columns:1fr; }
+.arabic-values { grid-template-columns:1fr; }
+.calc-wrap { padding:32px 24px; }
+#arabic { padding:80px 24px; }
+footer { padding:24px; }
+}
+@media(max-width:600px){
+.hero-h1 { font-size:52px; }
+.hero-ctas { flex-direction:column; }
+.reject-grid { }
+.portfolio-grid { grid-template-columns:1fr; }
+}
+
+/* ═══════════════════════════════════════════
+   AWWWARDS-LEVEL ENHANCEMENTS v3
+═══════════════════════════════════════════ */
+
+/* ── LOADER ── */
+#loader {
+  position:fixed; inset:0; z-index:999999;
+  background:#0A0A0F;
+  display:flex; align-items:center; justify-content:center;
+  transition:opacity 0.7s ease, visibility 0.7s ease;
+  animation:loaderAutoHide 0.7s 3s ease forwards;
+}
+@keyframes loaderAutoHide { to { opacity:0; visibility:hidden; pointer-events:none; } }
+#loader.hidden { opacity:0; visibility:hidden; pointer-events:none; animation:none; }
+.loader-inner { text-align:center; }
+.loader-logo {
+  font-family:'Bebas Neue',sans-serif; font-size:52px;
+  letter-spacing:0.2em; color:#D4A843;
+  animation:loaderFadeIn 0.5s 0s ease both;
+}
+.loader-line {
+  width:180px; height:1px; background:rgba(212,168,67,0.12);
+  margin:20px auto 0; overflow:hidden;
+}
+.loader-line-fill {
+  height:100%; background:#D4A843; width:100%;
+  transform:scaleX(0); transform-origin:left;
+  transition:transform 0.06s linear;
+  animation:loaderLineFill 2.5s 0s ease forwards;
+}
+@keyframes loaderLineFill { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+.loader-num {
+  font-family:'Bebas Neue',sans-serif; font-size:11px;
+  letter-spacing:0.3em; color:rgba(212,168,67,0.35);
+  margin-top:12px; min-width:36px; display:inline-block;
+}
+@keyframes loaderFadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── SCROLL PROGRESS ── */
+#scroll-progress {
+  position:fixed; top:0; left:0; height:1px;
+  background:linear-gradient(90deg, #D4A843, #F0C96A);
+  z-index:9999; width:0%; pointer-events:none;
+}
+
+/* ── MARQUEE ── */
+.marquee-section {
+  background:#D4A843; padding:12px 0;
+  overflow:hidden; position:relative; z-index:2;
+}
+.marquee-track {
+  display:flex; white-space:nowrap;
+  animation:marqueeRoll 30s linear infinite;
+  width:max-content;
+}
+.marquee-track:hover { animation-play-state:paused; }
+.marquee-item {
+  font-family:'Bebas Neue',sans-serif; font-size:12px;
+  letter-spacing:0.22em; color:#0A0A0F; padding:0 16px;
+}
+.marquee-sep { color:rgba(10,10,15,0.28); padding:0 2px; font-family:'Bebas Neue',sans-serif; font-size:12px; }
+@keyframes marqueeRoll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ── CURSOR LABEL ── */
+#cursor-label {
+  position:fixed; z-index:99999; pointer-events:none;
+  font-family:'DM Sans',sans-serif; font-size:9px;
+  letter-spacing:0.18em; color:#0A0A0F; font-weight:500;
+  text-transform:uppercase; opacity:0; transition:opacity 0.2s;
+  transform:translate(-50%,-50%); top:0; left:0;
+}
+#cursor-label.show { opacity:1; }
+
+/* ══════════════════════════════════════
+   HERO REDESIGN — AWWWARDS TYPOGRAPHY
+══════════════════════════════════════ */
+
+/* Large faded index number — signature editorial touch */
+#hero::before {
+  content:'01';
+  position:absolute; right:4%; top:50%;
+  transform:translateY(-52%);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(160px,22vw,320px);
+  color:rgba(212,168,67,0.035);
+  line-height:1; pointer-events:none;
+  letter-spacing:-0.02em; user-select:none; z-index:0;
+}
+
+/* Name: refined scale, not billboard */
+.hero-h1 {
+  font-size:clamp(44px, 6.2vw, 80px) !important;
+  line-height:0.88 !important;
+  letter-spacing:0.015em !important;
+}
+
+/* Outline glow animation */
+.hero-h1 .outline { animation:outlineGlow 8s ease-in-out infinite; }
+@keyframes outlineGlow {
+  0%,100% { -webkit-text-stroke-color:rgba(240,237,232,0.2); }
+  50%     { -webkit-text-stroke-color:rgba(212,168,67,0.5); }
+}
+
+/* Thin gold divider above subtitle */
+.hero-sub::before {
+  content:''; display:block;
+  width:32px; height:1px;
+  background:rgba(212,168,67,0.45);
+  margin-bottom:18px;
+}
+.hero-sub {
+  font-size:14px !important;
+  line-height:1.9 !important;
+  max-width:420px !important;
+  margin-top:32px !important;
+}
+
+/* Hero tag: tighter, more refined */
+.hero-tag {
+  font-size:10px !important;
+  letter-spacing:0.28em !important;
+  padding:6px 13px !important;
+  margin-bottom:52px !important;
+  animation:fadeIn 1s 0.3s both, heroTagPulse 5s 2s ease-in-out infinite;
+}
+@keyframes heroTagPulse {
+  0%,100% { border-color:rgba(212,168,67,0.25); }
+  50%     { border-color:rgba(212,168,67,0.5);  }
+}
+
+/* Buttons: more refined */
+.btn-gold {
+  font-size:11px !important;
+  letter-spacing:0.2em !important;
+  padding:12px 28px !important;
+}
+.btn-ghost {
+  font-size:11px !important;
+  letter-spacing:0.2em !important;
+  padding:12px 28px !important;
+}
+
+/* Stats: Bebas Neue for editorial numbers */
+.hero-stat-n {
+  font-family:'Bebas Neue',sans-serif !important;
+  font-size:54px !important;
+  font-weight:400 !important;
+  letter-spacing:0.03em;
+  display:inline-block; overflow:hidden;
+}
+.hero-stat-l {
+  font-size:10px !important;
+  letter-spacing:0.2em !important;
+  opacity:0.4 !important;
+  margin-top:4px !important;
+}
+
+/* Thin separator lines between stats */
+.hero-stats { gap:40px !important; }
+.hero-stats > div { position:relative; }
+.hero-stats > div:not(:last-child)::after {
+  content:''; position:absolute;
+  right:-20px; top:50%;
+  transform:translateY(-50%);
+  width:1px; height:44px;
+  background:rgba(240,237,232,0.07);
+}
+
+/* Counter slot animation */
+@keyframes slotIn {
+  from { transform:translateY(60px); opacity:0; }
+  to   { transform:translateY(0);    opacity:1; }
+}
+.hero-stat-n.slot { animation:slotIn 0.7s cubic-bezier(0.34,1.56,0.64,1) both; }
+
+/* ══════════════════════════════════════
+   HERO ALWAYS VISIBLE
+   animation-fill-mode:both держит opacity:0 — переопределяем
+   transform анимация (слайд снизу) при этом всё равно работает
+══════════════════════════════════════ */
+.hero-tag,
+.hero-h1,
+.hero-sub,
+.hero-ctas,
+.hero-stats,
+.hero-scroll { opacity: 1 !important; visibility: visible !important; }
+
+/* Arabic overrides (restore Arabic-specific sizes) */
+.lang-ar .hero-h1 { font-size:clamp(46px,7vw,88px) !important; line-height:1.25 !important; }
+
+/* ══════════════════════════════════════
+   NAV LOGO — SMALLER, REFINED
+══════════════════════════════════════ */
+.nav-logo {
+  font-size:14px !important;
+  letter-spacing:0.06em !important;
+}
+
+/* ══════════════════════════════════════
+   MAGNETIC BUTTONS
+══════════════════════════════════════ */
+.btn-gold, .btn-ghost, .nav-cta { will-change:transform; }
+
+/* ══════════════════════════════════════
+   SERVICE CARDS
+══════════════════════════════════════ */
+.service-card {
+  transition:background 0.4s, transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.4s;
+}
+.service-card:hover {
+  transform:translateY(-7px);
+  box-shadow:0 32px 64px rgba(0,0,0,0.5);
+}
+.service-num { transition:transform 0.4s, color 0.4s; }
+.service-card:hover .service-num { transform:translateX(10px); }
+
+/* ══════════════════════════════════════
+   PORTFOLIO CARDS
+══════════════════════════════════════ */
+.project-card {
+  cursor:none;
+  transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.5s;
+}
+.project-card:hover {
+  transform:scale(1.03); z-index:2;
+  box-shadow:0 48px 96px rgba(0,0,0,0.7);
+}
+.project-always { transition:opacity 0.4s; }
+.project-card:hover .project-always { opacity:0; }
+.project-info { transition:all 0.45s cubic-bezier(0.25,0.46,0.45,0.94); }
+
+/* ══════════════════════════════════════
+   CTA SECTION
+══════════════════════════════════════ */
+.cta-glow { animation:glowPulse 5s ease-in-out infinite; }
+@keyframes glowPulse {
+  0%,100% { transform:translate(-50%,-50%) scale(1);    opacity:1; }
+  50%     { transform:translate(-50%,-50%) scale(1.4);  opacity:0.55; }
+}
+
+/* ══════════════════════════════════════
+   SKILL BARS
+══════════════════════════════════════ */
+.skill-bar { position:relative; }
+.skill-bar::after {
+  content:''; position:absolute; right:0; top:50%;
+  width:5px; height:5px; border-radius:50%;
+  background:#D4A843; transform:translateY(-50%);
+  box-shadow:0 0 8px rgba(212,168,67,0.5);
+}
+
+/* ══════════════════════════════════════
+   PARALLAX HINT
+══════════════════════════════════════ */
+.hero-grid, .hero-bg { will-change:transform; }
+
+/* SAR symbol — Unicode 17.0 (U+20C1). Falls back to ﷼ in CSS if glyph missing. */
+.sar-sym {
+  font-family: 'Noto Naskh Arabic', 'Cairo', serif;
+  font-size: 0.8em;
+  margin-right: 2px;
+}
+.sar-sym::after {
+  /* If U+20C1 is blank (unsupported), show ﷼ via CSS content trick */
+  content: '';
+}
+
+</style>
+
 </head>
 <body>
 
-  <!-- Custom cursor (desktop only) -->
-  <div id="cursor"></div>
-  <div id="cursor-ring"></div>
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-logo">ДАЛИР·М</div>
+    <div class="loader-line"><div class="loader-line-fill" id="loaderFill"></div></div>
+    <div class="loader-num" id="loaderNum">0</div>
+  </div>
+</div>
 
-  <!-- NAV -->
-  <nav>
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- MOBILE NAV OVERLAY -->
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#what-i-do" onclick="closeMobileNav()" data-i18n="nav.services">Услуги</a>
+  <a href="#methodology" onclick="closeMobileNav()" data-i18n="nav.process">Процесс</a>
+  <a href="#portfolio" onclick="closeMobileNav()" data-i18n="nav.works">Работы</a>
+  <a href="#about" onclick="closeMobileNav()" data-i18n="nav.about">Обо мне</a>
+  <a href="#cta" onclick="closeMobileNav()" class="mobile-cta" data-i18n="nav.cta">Обсудить проект</a>
+</div>
+
+<!-- NAV -->
+
+<nav>
+  <a href="#" class="nav-logo" data-i18n="nav.logo">Далир·М</a>
+  <ul class="nav-links">
+    <li><a href="#what-i-do" data-i18n="nav.services">Услуги</a></li>
+    <li><a href="#methodology" data-i18n="nav.process">Процесс</a></li>
+    <li><a href="#portfolio" data-i18n="nav.works">Работы</a></li>
+    <li><a href="#about" data-i18n="nav.about">Обо мне</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px;">
     <div class="lang-switcher">
-      <button class="lang-btn active" id="btnRu" onclick="switchLang('ru')">RU</button>
-      <button class="lang-btn" id="btnAr" onclick="switchLang('ar')">عربي</button>
+      <button onclick="switchLang('ru')" class="lang-btn" id="btnRu">RU</button>
+      <span class="lang-sep">|</span>
+      <button onclick="switchLang('ar')" class="lang-btn" id="btnAr">عربي</button>
     </div>
-    <a href="#cta" class="nav-cta" data-i18n="nav_cta">ОБСУДИТЬ ПРОЕКТ</a>
-  </nav>
+    <a href="#cta" class="nav-cta" data-i18n="nav.cta">Обсудить проект</a>
+    <button class="burger" id="burger" onclick="toggleMobileNav()" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-noise"></div>
-    <div class="hero-content">
-      <div class="hero-left">
-        <div class="hero-tag" data-i18n="hero_tag">ВЕБ-ДИЗАЙНЕР И РАЗРАБОТЧИК · ДОСТУПЕН ДЛЯ ПРОЕКТОВ</div>
-        <h1 class="hero-h1">
-          <span class="accent">ДАЛИР</span><br>
-          <span class="accent">МАН</span><span class="ghost">СУРОВ</span>
-        </h1>
-        <p class="hero-sub" data-i18n="hero_sub">
-          Создаю сайты, которые <strong>продают</strong>.<br>
-          От маркетингового анализа до живого сайта — под ключ.<br>
-          Ваш продукт заслуживает дизайна, который работает.
-        </p>
-        <div class="hero-ctas">
-          <a href="#portfolio" class="btn-primary" data-i18n="hero_btn1">СМОТРЕТЬ РАБОТЫ</a>
-          <a href="#calc" class="btn-outline" data-i18n="hero_btn2">РАССЧИТАТЬ ПРОЕКТ</a>
-        </div>
-      </div>
-      <div class="hero-right">
-        <div class="hero-stats">
-          <div class="stat-item">
-            <div class="stat-num" data-count="3">0</div>
-            <div class="stat-label" data-i18n="stat1">ПРОЕКТА В ПОРТФОЛИО</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num" data-count="3">0</div>
-            <div class="stat-label" data-i18n="stat2">ЛЕТ ОПЫТА В ДИЗАЙНЕ</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num" data-count="8">0</div>
-            <div class="stat-label" data-i18n="stat3">ЭТАПОВ В КАЖДОМ ПРОЕКТЕ</div>
-          </div>
-        </div>
-      </div>
+<!-- HERO -->
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="hero-dot"></span>
+      <span data-i18n="hero.tag">Веб-дизайнер и разработчик · Доступен для проектов</span>
     </div>
-  </section>
-
-  <!-- NOT MY WORK -->
-  <section class="nomy-section reveal" id="nomy">
-    <div class="nomy-inner">
-      <div class="section-label" data-i18n="nomy_label">МОИ ПРИНЦИПЫ</div>
-      <!-- FIX #7: id="bigNoEl" for JS switching -->
-      <div class="big-no" id="bigNoEl"><span>НЕ</span> МОЯ РАБОТА</div>
-      <div class="nomy-grid">
-        <div class="nomy-item"><span class="nomy-icon">🎵</span><span data-i18n="nomy1">Музыкальные фестивали</span></div>
-        <div class="nomy-item"><span class="nomy-icon">🎤</span><span data-i18n="nomy2">Певцы и артисты</span></div>
-        <div class="nomy-item"><span class="nomy-icon">🎰</span><span data-i18n="nomy3">Азартные игры</span></div>
-        <div class="nomy-item"><span class="nomy-icon">⚽</span><span data-i18n="nomy4">Ставки на спорт</span></div>
-        <div class="nomy-item"><span class="nomy-icon">💄</span><span data-i18n="nomy5">Бьюти-индустрия</span></div>
-        <div class="nomy-item"><span class="nomy-icon">🥊</span><span data-i18n="nomy6">UFC и единоборства</span></div>
-        <div class="nomy-item"><span class="nomy-icon">💰</span><span data-i18n="nomy7">Банковские проценты (риба)</span></div>
+    <h1 class="hero-h1" id="heroH1">
+      <span data-i18n="hero.h1_line1">ДАЛИР</span><br>
+      <em data-i18n="hero.h1_line2_accent">МАН</em><span class="outline" data-i18n="hero.h1_line2_rest">СУРОВ</span>
+    </h1>
+    <p class="hero-sub" data-i18n="hero.sub">
+      Создаю сайты, которые <strong>продают</strong>.<br>
+      От маркетингового анализа до живого сайта — под ключ.<br>
+      Ваш продукт заслуживает дизайна, который работает.
+    </p>
+    <div class="hero-ctas">
+      <a href="#portfolio" class="btn-gold" data-i18n="hero.btn1">Смотреть работы</a>
+      <a href="#calculator" class="btn-ghost" data-i18n="hero.btn2">Рассчитать проект</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-n" data-count="3">0</div>
+        <div class="hero-stat-l" data-i18n="hero.stat1_l">Проекта в портфолио</div>
+      </div>
+      <div>
+        <div class="hero-stat-n" data-count="10">0</div>
+        <div class="hero-stat-l" data-i18n="hero.stat2_l">Месяцев в Эр-Рияде</div>
+      </div>
+      <div>
+        <div class="hero-stat-n" data-count="8">0</div>
+        <div class="hero-stat-l" data-i18n="hero.stat3_l">Этапов в каждом проекте</div>
       </div>
     </div>
-  </section>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
 
-  <!-- PROCESS -->
-  <section class="process-section reveal" id="process">
-    <div class="process-inner">
-      <div class="section-label" data-i18n="process_label">КАК Я РАБОТАЮ</div>
-      <h2 data-i18n="process_h2">МОЙ ПРОЦЕСС</h2>
-      <canvas id="shredder-canvas"></canvas>
-      <div class="shredder-cards" id="shredderCards">
-        <div class="shred-card" onclick="showStep(1)">
-          <span class="card-icon">🔍</span>
-          <span class="card-num">01</span>
-          <span class="card-title" data-i18n="step1_title">Маркетинговый анализ</span>
-        </div>
-        <div class="shred-card" onclick="showStep(2)">
-          <span class="card-icon">📐</span>
-          <span class="card-num">02</span>
-          <span class="card-title" data-i18n="step2_title">Прототип + текст</span>
-        </div>
-        <div class="shred-card" onclick="showStep(3)">
-          <span class="card-icon">🎨</span>
-          <span class="card-num">03</span>
-          <span class="card-title" data-i18n="step3_title">Дизайн-концепция</span>
-        </div>
-        <div class="shred-card" onclick="showStep(4)">
-          <span class="card-icon">🖥️</span>
-          <span class="card-num">04</span>
-          <span class="card-title" data-i18n="step4_title">Дизайн-макет</span>
-        </div>
-        <div class="shred-card" onclick="showStep(5)">
-          <span class="card-icon">⚡</span>
-          <span class="card-num">05</span>
-          <span class="card-title" data-i18n="step5_title">Верстка на Tilda</span>
-        </div>
-        <div class="shred-card" onclick="showStep(6)">
-          <span class="card-icon">📱</span>
-          <span class="card-num">06</span>
-          <span class="card-title" data-i18n="step6_title">Адаптивность</span>
-        </div>
-        <div class="shred-card" onclick="showStep(7)">
-          <span class="card-icon">🔗</span>
-          <span class="card-num">07</span>
-          <span class="card-title" data-i18n="step7_title">Интеграции</span>
-        </div>
-        <div class="shred-card" onclick="showStep(8)">
-          <span class="card-icon">✅</span>
-          <span class="card-num">08</span>
-          <span class="card-title" data-i18n="step8_title">Тестирование и запуск</span>
-        </div>
+<!-- MARQUEE TICKER -->
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">WEB DESIGN</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">TILDA</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">FIGMA</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">UI/UX</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">LANDING PAGE</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">E-COMMERCE</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">RTL ARABIC</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">ZERO BLOCK</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">BRANDING</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">PIXEL PERFECT</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">WEB DESIGN</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">TILDA</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">FIGMA</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">UI/UX</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">LANDING PAGE</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">E-COMMERCE</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">RTL ARABIC</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">ZERO BLOCK</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">BRANDING</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">PIXEL PERFECT</span><span class="marquee-sep">·</span>
+  </div>
+</div>
+
+<!-- WHAT I BUILD -->
+
+<section id="what-i-do">
+  <div class="container">
+    <div class="label reveal" data-i18n="services.label">Что создаю</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);color:var(--sand);line-height:1;" class="reveal" data-i18n="services.h2">ПРОЕКТЫ КОТОРЫЕ<br><span style="color:var(--gold);">Я БЕРУ В РАБОТУ</span></h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <div class="service-title" data-i18n="service.t1">Лендинг / Сайт-визитка</div>
+        <div class="service-desc" data-i18n="service.d1">Продающие одностраничники для услуг, продуктов, личного бренда. Фокус на конверсии и доверии.</div>
       </div>
-      <div class="process-detail" id="processDetail">
-        <div class="detail-hint" data-i18n="process_hint">↑ НАЖМИ НА КАРТОЧКУ ВЫШЕ — ОНА ПОПАДЁТ СЮДА</div>
+      <div class="service-card reveal">
+        <div class="service-num">02</div>
+        <div class="service-title" data-i18n="service.t2">Интернет-магазин</div>
+        <div class="service-desc" data-i18n="service.d2">Полноценный магазин с каталогом, корзиной, оплатой. Визуально — на уровне премиум-брендов.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">03</div>
+        <div class="service-title" data-i18n="service.t3">Корпоративный сайт</div>
+        <div class="service-desc" data-i18n="service.d3">Многостраничные сайты для компаний с разделами, командой, услугами и блогом.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">04</div>
+        <div class="service-title" data-i18n="service.t4">Медицина и здоровье</div>
+        <div class="service-desc" data-i18n="service.d4">Клиники, реабилитационные центры, врачи. Дизайн, который вызывает доверие.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">05</div>
+        <div class="service-title" data-i18n="service.t5">Туризм и паломничество</div>
+        <div class="service-desc" data-i18n="service.d5">Сайты для тур-агентств, паломнических туров, путеводителей. С учётом культурного контекста.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">06</div>
+        <div class="service-title" data-i18n="service.t6">Двуязычные сайты (AR/RU)</div>
+        <div class="service-desc" data-i18n="service.d6">RTL-адаптация под арабский рынок. Шрифты Cairo и Noto Naskh. Учёт культуры Саудовской Аравии.</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section class="about-section reveal" id="about">
-    <div class="about-inner">
-      <div class="about-left">
-        <div class="section-label" data-i18n="about_label">ОБО МНЕ</div>
-        <h2 data-i18n="about_h2">ДАЛИР МАНСУРОВ</h2>
-        <div class="about-text">
-          <p data-i18n="about_p1">Веб-дизайнер и разработчик из Таджикистана. Специализируюсь на создании сайтов, которые не просто красиво выглядят — они работают на бизнес.</p>
-          <!-- FIX #10: Arabic grammar corrections applied in CONTENT object -->
-          <p data-i18n="about_p2">Провёл 10 месяцев в Эр-Рияде, работая с арабскими клиентами. Этот опыт дал мне глубокое понимание культуры и требований ближневосточного рынка.</p>
-          <p data-i18n="about_p3">Работаю в связке дизайн + разработка: Figma → Tilda Zero Block. Каждый проект — это системный подход от анализа до запуска.</p>
+<!-- NO PROJECTS — SHREDDER -->
+
+<section id="no-projects">
+  <div class="container">
+    <div class="shredder-header reveal">
+      <div class="label" style="justify-content:center;margin-bottom:16px;" data-i18n="shredder.label">Не берусь за</div>
+      <div class="big-no" id="bigNoEl" data-i18n="shredder.big">НЕ МОЯ РАБОТА</div>
+      <p style="font-size:15px;color:var(--sand2);margin-top:16px;max-width:520px;margin-left:auto;margin-right:auto;" data-i18n="shredder.sub">
+        Ниже — проекты, с которыми я принципиально не работаю.<br>
+        Нажми на любой — и он уйдёт в шредер.
+      </p>
+    </div>
+    <div class="reject-grid" id="rejectGrid">
+      <div class="reject-item" data-label="🎵 Музыкальные фестивали" data-i18n="reject.r1">🎵 Музыкальные фестивали<div class="strike"></div></div>
+      <div class="reject-item" data-label="🎤 Певцы и артисты" data-i18n="reject.r2">🎤 Певцы и артисты<div class="strike"></div></div>
+      <div class="reject-item" data-label="🎰 Азартные игры" data-i18n="reject.r3">🎰 Азартные игры<div class="strike"></div></div>
+      <div class="reject-item" data-label="⚽ Ставки на спорт" data-i18n="reject.r4">⚽ Ставки на спорт<div class="strike"></div></div>
+      <div class="reject-item" data-label="💄 Бьюти-индустрия" data-i18n="reject.r5">💄 Бьюти-индустрия<div class="strike"></div></div>
+      <div class="reject-item" data-label="🥊 UFC и единоборства" data-i18n="reject.r6">🥊 UFC и единоборства<div class="strike"></div></div>
+      <div class="reject-item" data-label="💰 Банковские проценты / ростовщичество" data-i18n="reject.r7">💰 Банковские проценты (риба)<div class="strike"></div></div>
+    </div>
+    <canvas id="shredder-canvas" width="800" height="320"></canvas>
+    <p class="shredder-label" data-i18n="shredder.hint">↑ Нажми на карточку выше — она попадёт сюда</p>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+
+<section id="methodology">
+  <div class="container">
+    <div class="label reveal" data-i18n="method.label">Как я работаю</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);color:var(--sand);line-height:1;margin-bottom:16px;" class="reveal" data-i18n="method.h2">8 ШАГОВ ОТ ИДЕИ<br><span style="color:var(--gold);">ДО ЖИВОГО САЙТА</span></h2>
+    <div class="method-grid" id="methodGrid">
+      <div class="method-step" data-step="0">
+        <div class="step-bar"></div>
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <div class="step-icon">🔍</div>
+          <div class="step-title" data-i18n="step.t1">Маркетинговый анализ</div>
+          <div class="step-desc" data-i18n="step.d1">Изучаю конкурентов, целевую аудиторию, рынок. Формулируем УТП и позиционирование. Без этого — дизайн вслепую.</div>
         </div>
       </div>
-      <div class="about-right">
-        <div class="skill-row">
-          <span class="skill-name">UI/UX Design</span>
-          <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+      <div class="method-step" data-step="1">
+        <div class="step-bar"></div>
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <div class="step-icon">📐</div>
+          <div class="step-title" data-i18n="step.t2">Прототип страниц + текст</div>
+          <div class="step-desc" data-i18n="step.d2">Создаю wireframe каждой страницы в Figma. Прописываю структуру блоков, заголовки и CTA до начала дизайна.</div>
         </div>
-        <div class="skill-row">
-          <span class="skill-name">Figma</span>
-          <div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div>
+      </div>
+      <div class="method-step" data-step="2">
+        <div class="step-bar"></div>
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <div class="step-icon">🎨</div>
+          <div class="step-title" data-i18n="step.t3">Дизайн-концепция</div>
+          <div class="step-desc" data-i18n="step.d3">Разрабатываю визуальный стиль: цвета, шрифты, настроение. Показываю 1–2 варианта направления на согласование.</div>
         </div>
-        <div class="skill-row">
-          <span class="skill-name">Tilda / HTML / CSS</span>
-          <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
+      </div>
+      <div class="method-step" data-step="3">
+        <div class="step-bar"></div>
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <div class="step-icon">🖥️</div>
+          <div class="step-title" data-i18n="step.t4">Дизайн-макет</div>
+          <div class="step-desc" data-i18n="step.d4">Финальный макет всех страниц в Figma. Все экраны, состояния кнопок, hover-эффекты. Согласуем до верстки.</div>
         </div>
-        <div class="skill-row">
-          <span class="skill-name">JavaScript</span>
-          <div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div>
+      </div>
+      <div class="method-step" data-step="4">
+        <div class="step-bar"></div>
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <div class="step-icon">⚡</div>
+          <div class="step-title" data-i18n="step.t5">Верстка на Tilda</div>
+          <div class="step-desc" data-i18n="step.d5">Собираю сайт в Tilda Zero Block с соблюдением пиксель-перфект дизайна. Кастомный CSS и JS для сложных эффектов.</div>
         </div>
-        <div class="skill-row">
-          <span class="skill-name">Arabic / Bilingual</span>
-          <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+      </div>
+      <div class="method-step" data-step="5">
+        <div class="step-bar"></div>
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <div class="step-icon">📱</div>
+          <div class="step-title" data-i18n="step.t6">Адаптивность</div>
+          <div class="step-desc" data-i18n="step.d6">Настройка для всех размеров: iPhone SE → iPad → Desktop. Тестирую на реальных устройствах в BrowserStack.</div>
+        </div>
+      </div>
+      <div class="method-step" data-step="6">
+        <div class="step-bar"></div>
+        <div class="step-num">07</div>
+        <div class="step-body">
+          <div class="step-icon">🔗</div>
+          <div class="step-title" data-i18n="step.t7">Интеграции</div>
+          <div class="step-desc" data-i18n="step.d7">Подключаю CRM, эквайринг (Т-Банк, ЮKassa), аналитику (Яндекс.Метрика, GA4), чат-виджеты, WhatsApp-кнопки.</div>
+        </div>
+      </div>
+      <div class="method-step" data-step="7">
+        <div class="step-bar"></div>
+        <div class="step-num">08</div>
+        <div class="step-body">
+          <div class="step-icon">✅</div>
+          <div class="step-title" data-i18n="step.t8">Тестирование и запуск</div>
+          <div class="step-desc" data-i18n="step.d8">Финальный чеклист: формы, оплата, скорость (PageSpeed), мобильная версия. Публикуем. Сопровождаю 30 дней.</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CALCULATOR -->
-  <section class="calc-section reveal" id="calc">
-    <div class="calc-inner">
-      <div class="section-label" data-i18n="calc_label">СТОИМОСТЬ ПРОЕКТА</div>
-      <h2 data-i18n="calc_h2">КАЛЬКУЛЯТОР</h2>
-      <div class="calc-grid" id="calcTypes">
-        <div class="calc-option selected" data-type="landing" onclick="selectType(this, 50000, 10)">
-          <div class="calc-option-name" data-i18n="type1_name">Лендинг</div>
-          <div class="calc-option-meta" data-i18n="type1_meta">1 страница · до 10 секций</div>
-          <div class="calc-option-price" data-i18n="type1_price">от 50 000 ₽</div>
-        </div>
-        <div class="calc-option" data-type="shop" onclick="selectType(this, 100000, 21)">
-          <div class="calc-option-name" data-i18n="type2_name">Интернет-магазин</div>
-          <div class="calc-option-meta" data-i18n="type2_meta">каталог, корзина, оплата</div>
-          <div class="calc-option-price" data-i18n="type2_price">от 100 000 ₽</div>
-        </div>
-        <div class="calc-option" data-type="corp" onclick="selectType(this, 130000, 28)">
-          <div class="calc-option-name" data-i18n="type3_name">Корпоративный сайт</div>
-          <div class="calc-option-meta" data-i18n="type3_meta">многостраничный, CRM</div>
-          <div class="calc-option-price" data-i18n="type3_price">от 130 000 ₽</div>
-        </div>
-        <div class="calc-option" data-type="bilingual" onclick="selectType(this, 85000, 17)">
-          <div class="calc-option-name" data-i18n="type4_name">Двуязычный AR/RU</div>
-          <div class="calc-option-meta" data-i18n="type4_meta">RTL + LTR, переключение</div>
-          <div class="calc-option-price" data-i18n="type4_price">от 85 000 ₽</div>
+<!-- CALCULATOR -->
+
+<section id="calculator">
+  <div class="container">
+    <div class="label reveal" data-i18n="calc.label">Стоимость проекта</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);color:var(--sand);line-height:1;" class="reveal" data-i18n="calc.h2">РАССЧИТАЙТЕ<br><span style="color:var(--gold);">СВОЙ САЙТ</span></h2>
+    <div class="calc-wrap reveal">
+      <div class="calc-row">
+        <div class="calc-label" data-i18n="calc.typeLabel">Тип проекта</div>
+        <div class="calc-toggles" id="calcType">
+          <div class="calc-toggle on" data-base="50000" data-time="10" data-i18n="calc.type1">Лендинг</div>
+          <div class="calc-toggle" data-base="100000" data-time="21" data-i18n="calc.type2">Интернет-магазин</div>
+          <div class="calc-toggle" data-base="130000" data-time="28" data-i18n="calc.type3">Корпоративный сайт</div>
+          <div class="calc-toggle" data-base="85000" data-time="17" data-i18n="calc.type4">Двуязычный сайт AR/RU</div>
         </div>
       </div>
-      <div class="calc-extras">
-        <div class="calc-extras-title" data-i18n="extras_title">ДОПОЛНИТЕЛЬНО</div>
-        <div class="extras-grid">
-          <div class="extra-tag" onclick="toggleExtra(this, 10000)" data-i18n="extra1">SEO-оптимизация</div>
-          <div class="extra-tag" onclick="toggleExtra(this, 15000)" data-i18n="extra2">CRM-интеграция</div>
-          <div class="extra-tag" onclick="toggleExtra(this, 8000)" data-i18n="extra3">Аналитика</div>
-          <div class="extra-tag" onclick="toggleExtra(this, 12000)" data-i18n="extra4">Мультиязычность</div>
-          <div class="extra-tag" onclick="toggleExtra(this, 5000)" data-i18n="extra5">Чат-виджет</div>
+      <div class="calc-row">
+        <div class="calc-label"><span data-i18n="calc.pageLabel">Количество страниц</span> <span id="pageCountLabel">5</span></div>
+        <input type="range" id="pageCount" min="1" max="20" value="5">
+      </div>
+      <div class="calc-row">
+        <div class="calc-label" data-i18n="calc.extrasLabel">Дополнительные услуги</div>
+        <div class="calc-toggles" id="calcExtras">
+          <div class="calc-toggle" data-extra="15000" data-i18n="calc.e1">+Анимации и интерактив</div>
+          <div class="calc-toggle" data-extra="12000" data-i18n="calc.e2">+Подключение оплаты</div>
+          <div class="calc-toggle" data-extra="10000" data-i18n="calc.e3">+Настройка Яндекс.Метрика</div>
+          <div class="calc-toggle" data-extra="8000" data-i18n="calc.e4">+SEO-оптимизация</div>
+          <div class="calc-toggle" data-extra="20000" data-i18n="calc.e5">+Контент (тексты + фото)</div>
+          <div class="calc-toggle" data-extra="6000" data-i18n="calc.e6">+Домен + хостинг 1 год</div>
+          <div class="calc-toggle" data-extra="18000" data-i18n="calc.e7">+Интеграция CRM</div>
         </div>
       </div>
       <div class="calc-result">
         <div>
-          <div class="calc-total-label" data-i18n="calc_total">ИТОГО</div>
-          <div class="calc-price" id="calcPrice">50 000 ₽</div>
-          <div class="calc-deadline" id="calcDeadline" data-i18n="calc_deadline_prefix">Срок: 10 дней</div>
+          <div class="calc-price-label" data-i18n="calc.priceLabel">Стоимость проекта</div>
+          <div class="calc-price" id="calcPrice" data-i18n="calc.priceDefault">50 000 ₽</div>
         </div>
-        <a href="https://wa.me/79513894443" class="btn-primary" target="_blank" data-i18n="calc_cta">ОБСУДИТЬ ПРОЕКТ</a>
+        <div style="text-align:right;">
+          <div class="calc-price-label" style="text-align:right;" data-i18n="calc.timeLabel">Сроки</div>
+          <div class="calc-time" id="calcTime" data-i18n="calc.timeDefault">~10 дней</div>
+        </div>
+        <a href="https://wa.me/79513894443" class="btn-gold" style="margin-left:auto;" data-i18n="calc.btn">Обсудить проект →</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CTA -->
-  <section class="cta-section reveal" id="cta">
-    <div class="section-label" data-i18n="cta_label">НАЧНЁМ?</div>
-    <h2 class="cta-h2" data-i18n="cta_h2">ПОГОВОРИМ<br><span class="accent">О ВАШЕМ</span><br>ПРОЕКТЕ?</h2>
-    <p class="cta-sub" data-i18n="cta_sub">Расскажите о задаче — предложу решение и смету бесплатно.</p>
-    <div class="cta-links">
-      <a href="https://wa.me/79513894443" class="btn-primary" target="_blank" data-i18n="cta_wa">НАПИСАТЬ В WHATSAPP</a>
-      <a href="https://t.me/Dalir37" class="btn-outline" target="_blank" data-i18n="cta_tg">TELEGRAM</a>
+<!-- PORTFOLIO -->
+
+<section id="portfolio">
+  <div class="container">
+    <div class="label reveal" data-i18n="portfolio.label">Мои работы</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);color:var(--sand);line-height:1;margin-bottom:16px;" class="reveal" data-i18n="portfolio.h2">ПОРТФОЛИО</h2>
+    <p style="color:var(--sand2);font-size:15px;max-width:500px;" class="reveal" data-i18n="portfolio.sub">Нажмите на проект, чтобы увидеть детали — как создавался, какие шаги были сделаны, что получилось.</p>
+    <div class="portfolio-grid" style="margin-top:64px;">
+
+  <!-- ARAVIA -->
+  <div class="project-card aravia reveal" onclick="openModal('aravia')">
+    <div class="project-overlay-bg"></div>
+    <div class="project-thumb">🕌</div>
+    <div class="project-accent">🕌</div>
+    <div class="project-always">
+      <div class="project-tag" data-i18n="portfolio.tag1">Умра · Хадж · Паломничество</div>
+      <div class="project-name" data-i18n="portfolio.name1">Visit Aravia</div>
     </div>
-  </section>
+    <div class="project-info">
+      <div class="project-detail" data-i18n="portfolio.detail1">Фирменный сайт для продажи паломнических туров в Саудовскую Аравию. Tilda, кастомный дизайн.</div>
+      <div class="project-link" data-i18n="portfolio.link1">Смотреть проект →</div>
+    </div>
+  </div>
 
-  <!-- CONTACTS -->
-  <section class="contacts-section reveal" id="contacts">
-    <div class="contacts-inner">
-      <div class="section-label" data-i18n="contacts_label">КОНТАКТЫ</div>
-      <h2 data-i18n="contacts_h2">НА СВЯЗИ</h2>
-      <div class="contact-list">
-        <a href="https://wa.me/79513894443" class="contact-link" target="_blank">
-          <span class="contact-icon">📱</span>
-          <span>+7 951 389-44-43</span>
-          <span class="contact-label">WhatsApp</span>
-        </a>
-        <a href="https://t.me/Dalir37" class="contact-link" target="_blank">
-          <span class="contact-icon">✈️</span>
-          <span>@Dalir37</span>
-          <span class="contact-label">Telegram</span>
-        </a>
-        <a href="https://www.instagram.com/mansurov.dalir2018/" class="contact-link" target="_blank">
-          <span class="contact-icon">📸</span>
-          <span>@mansurov.dalir2018</span>
-          <span class="contact-label">Instagram</span>
-        </a>
-        <a href="mailto:mansurov.dalir09@gmail.com" class="contact-link">
-          <span class="contact-icon">📧</span>
-          <span>mansurov.dalir09@gmail.com</span>
-          <span class="contact-label">Email</span>
-        </a>
+  <!-- MILANA -->
+  <div class="project-card milana reveal" onclick="openModal('milana')" style="--reveal-delay:0.2s">
+    <div class="project-overlay-bg"></div>
+    <div class="project-thumb">👗</div>
+    <div class="project-accent">👗</div>
+    <div class="project-always">
+      <div class="project-tag" data-i18n="portfolio.tag2">Fashion · E-commerce</div>
+      <div class="project-name" data-i18n="portfolio.name2">Магазин Милана</div>
+    </div>
+    <div class="project-info">
+      <div class="project-detail" data-i18n="portfolio.detail2">Интернет-магазин женской одежды. Прототип → дизайн → верстка → запуск на Tilda.</div>
+      <div class="project-link" data-i18n="portfolio.link2">Смотреть проект →</div>
+    </div>
+  </div>
+
+  <!-- REHABMEN -->
+  <div class="project-card rehab reveal" onclick="openModal('rehab')" style="--reveal-delay:0.4s">
+    <div class="project-overlay-bg"></div>
+    <div class="project-thumb">💪</div>
+    <div class="project-accent">💪</div>
+    <div class="project-always">
+      <div class="project-tag" data-i18n="portfolio.tag3">Медицина · Реабилитация</div>
+      <div class="project-name" data-i18n="portfolio.name3">REHABMEN</div>
+    </div>
+    <div class="project-info">
+      <div class="project-detail" data-i18n="portfolio.detail3">Центр восстановления для мужчин. Верстка макета, анимации pop-up для услуг.</div>
+      <div class="project-link" data-i18n="portfolio.link3">Смотреть проект →</div>
+    </div>
+  </div>
+
+</div>
+
+  </div>
+</section>
+
+<!-- PROJECT MODAL -->
+
+<div id="modal-overlay">
+  <div class="modal-close" onclick="closeModal()">✕</div>
+  <div class="modal-inner" id="modalContent"></div>
+</div>
+
+<!-- ARABIC SECTION -->
+
+<section id="arabic">
+  <div class="arabic-bg-pattern"></div>
+  <div class="arabic-accent">م</div>
+  <div class="container">
+    <div class="arabic-label">للعملاء في المملكة العربية السعودية</div>
+    <h2 class="arabic-h2 reveal">تصميم مواقع <em>احترافية</em><br>للسوق السعودي</h2>
+    <p class="arabic-sub reveal">
+      أقدم خدمات تصميم وتطوير المواقع الإلكترونية المتوافقة مع القيم والثقافة السعودية.
+      مواقع ثنائية اللغة (عربي - روسي) بتصميم عصري وخطوط عربية أنيقة.
+    </p>
+    <p class="arabic-bio reveal">
+      أقمت في <strong>الرياض ١٠ أشهر</strong>، وتعلمت اللغة العربية في
+      <strong>مجمع الملك سلمان العالمي للغة العربية</strong>.
+      هذه التجربة أعطتني فهمًا عميقًا للثقافة والقيم السعودية،
+      مما ينعكس مباشرةً على جودة التصميم للعميل السعودي.
+    </p>
+    <div class="arabic-badges reveal">
+      <div class="arabic-badge">🇸🇦 متوافق مع القيم الإسلامية</div>
+      <div class="arabic-badge">📱 تصميم متجاوب بالكامل</div>
+      <div class="arabic-badge">🔤 خطوط Cairo · Noto Naskh</div>
+      <div class="arabic-badge">↔️ دعم RTL كامل</div>
+    </div>
+    <div class="arabic-values reveal">
+      <div class="arabic-value">
+        <div class="arabic-value-icon">🕌</div>
+        <div class="arabic-value-title">القيم الإسلامية</div>
+        <div class="arabic-value-text">تصميم يحترم الثقافة والدين. لا محتوى مخالف للشريعة.</div>
+      </div>
+      <div class="arabic-value">
+        <div class="arabic-value-icon">✨</div>
+        <div class="arabic-value-title">الأناقة والفخامة</div>
+        <div class="arabic-value-text">ألوان وخطوط تعكس الذوق الرفيع للمستخدم السعودي.</div>
+      </div>
+      <div class="arabic-value">
+        <div class="arabic-value-icon">📞</div>
+        <div class="arabic-value-title">تواصل مباشر</div>
+        <div class="arabic-value-text">أتحدث العربية وأفهم احتياجاتكم مباشرةً بدون وسيط.</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p data-i18n="footer">© 2025 Далир Мансуров — Веб-дизайн и разработка</p>
-  </footer>
+<!-- ABOUT -->
 
-  <script>
-  // ─── TRANSLATIONS ───
-  var currentLang = 'ru';
-  var calcBase = 50000;
-  var calcDays = 10;
-  var calcExtras = 0;
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="label reveal" data-i18n="about.label">Обо мне</div>
+        <h2 class="about-h2 reveal" data-i18n="about.h2">ВЕБ-ДИЗАЙН — ЭТО<br><em>МОЙ ЯЗЫК</em></h2>
+        <p class="about-text reveal" data-i18n="about.p1">Создаю сайты, в которых дизайн — не украшение, а инструмент продаж. Каждый проект начинается с глубокого понимания бизнеса клиента, его аудитории и целей.</p>
+        <p class="about-text reveal" data-i18n="about.p2">Жил и учился в Эр-Рияде 10 месяцев. Окончил курс арабского языка в Глобальной академии имени короля Салмана — это даёт мне уникальную возможность создавать сайты для мусульманской аудитории и арабского рынка.</p>
+        <p class="about-text reveal" data-i18n="about.p3">Специализируюсь на Tilda, потому что это инструмент, дающий максимальный результат при минимальных затратах на поддержку. Клиент может сам вносить мелкие правки.</p>
+      </div>
+      <div class="about-right">
+        <div class="skills-list reveal">
+          <div class="skill-item">
+            <span class="skill-name" data-i18n="skill.s1">UI/UX Дизайн (Figma)</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" data-width="92" style="width:0%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name" data-i18n="skill.s2">Верстка на Tilda</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" data-width="95" style="width:0%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name" data-i18n="skill.s3">CSS / JS анимации</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" data-width="80" style="width:0%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name" data-i18n="skill.s4">Адаптивная вёрстка</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" data-width="90" style="width:0%"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name" data-i18n="skill.s5">RTL / Арабский рынок</span>
+            <div class="skill-bar-wrap"><div class="skill-bar" data-width="85" style="width:0%"></div></div>
+          </div>
+        </div>
+        <div class="stack-tags reveal">
+          <div class="stack-tag">Figma</div>
+          <div class="stack-tag">Tilda</div>
+          <div class="stack-tag">Zero Block</div>
+          <div class="stack-tag">CSS3</div>
+          <div class="stack-tag">JavaScript</div>
+          <div class="stack-tag">Яндекс.Метрика</div>
+          <div class="stack-tag">T-Bank API</div>
+          <div class="stack-tag">WhatsApp API</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  var CONTENT = {
-    ru: {
-      nav_cta: 'ОБСУДИТЬ ПРОЕКТ',
-      hero_tag: 'ВЕБ-ДИЗАЙНЕР И РАЗРАБОТЧИК · ДОСТУПЕН ДЛЯ ПРОЕКТОВ',
-      hero_sub: 'Создаю сайты, которые <strong>продают</strong>.<br>От маркетингового анализа до живого сайта — под ключ.<br>Ваш продукт заслуживает дизайна, который работает.',
-      hero_btn1: 'СМОТРЕТЬ РАБОТЫ',
-      hero_btn2: 'РАССЧИТАТЬ ПРОЕКТ',
-      stat1: 'ПРОЕКТА В ПОРТФОЛИО',
-      stat2: 'ЛЕТ ОПЫТА В ДИЗАЙНЕ',
-      stat3: 'ЭТАПОВ В КАЖДОМ ПРОЕКТЕ',
-      nomy_label: 'МОИ ПРИНЦИПЫ',
-      nomy1: 'Музыкальные фестивали',
-      nomy2: 'Певцы и артисты',
-      nomy3: 'Азартные игры',
-      nomy4: 'Ставки на спорт',
-      nomy5: 'Бьюти-индустрия',
-      nomy6: 'UFC и единоборства',
-      nomy7: 'Банковские проценты (риба)',
-      process_label: 'КАК Я РАБОТАЮ',
-      process_h2: 'МОЙ ПРОЦЕСС',
-      process_hint: '↑ НАЖМИ НА КАРТОЧКУ ВЫШЕ — ОНА ПОПАДЁТ СЮДА',
-      step1_title: 'Маркетинговый анализ',
-      step2_title: 'Прототип + текст',
-      step3_title: 'Дизайн-концепция',
-      step4_title: 'Дизайн-макет',
-      step5_title: 'Верстка на Tilda',
-      step6_title: 'Адаптивность',
-      step7_title: 'Интеграции',
-      step8_title: 'Тестирование и запуск',
-      step1_desc: 'Изучаю конкурентов, целевую аудиторию, рынок. Формулируем УТП и позиционирование. Без этого — дизайн вслепую.',
-      step2_desc: 'Создаю wireframe каждой страницы в Figma. Прописываю структуру блоков, заголовки и CTA до начала дизайна.',
-      step3_desc: 'Разрабатываю визуальный стиль: цвета, шрифты, настроение. Показываю 1–2 варианта направления на согласование.',
-      step4_desc: 'Финальный макет всех страниц в Figma. Все экраны, состояния кнопок, hover-эффекты. Согласуем до верстки.',
-      step5_desc: 'Собираю сайт в Tilda Zero Block с соблюдением пиксель-перфект дизайна. Кастомный CSS и JS для сложных эффектов.',
-      step6_desc: 'Настройка для всех размеров: iPhone SE → iPad → Desktop. Тестирую на реальных устройствах в BrowserStack.',
-      step7_desc: 'Подключаю CRM, эквайринг (Т-Банк, ЮKassa), аналитику (Яндекс.Метрика, GA4), чат-виджеты, WhatsApp-кнопки.',
-      step8_desc: 'Финальный чеклист: формы, оплата, скорость (PageSpeed), мобильная версия. Публикуем. Сопровождаю 30 дней.',
-      about_label: 'ОБО МНЕ',
-      about_h2: 'ДАЛИР МАНСУРОВ',
-      about_p1: 'Веб-дизайнер и разработчик из Таджикистана. Специализируюсь на создании сайтов, которые не просто красиво выглядят — они работают на бизнес.',
-      about_p2: 'Провёл 10 месяцев в Эр-Рияде, работая с арабскими клиентами. Этот опыт дал мне глубокое понимание культуры и требований ближневосточного рынка.',
-      about_p3: 'Работаю в связке дизайн + разработка: Figma → Tilda Zero Block. Каждый проект — это системный подход от анализа до запуска.',
-      calc_label: 'СТОИМОСТЬ ПРОЕКТА',
-      calc_h2: 'КАЛЬКУЛЯТОР',
-      type1_name: 'Лендинг',
-      type1_meta: '1 страница · до 10 секций',
-      type1_price: 'от 50 000 ₽',
-      type2_name: 'Интернет-магазин',
-      type2_meta: 'каталог, корзина, оплата',
-      type2_price: 'от 100 000 ₽',
-      type3_name: 'Корпоративный сайт',
-      type3_meta: 'многостраничный, CRM',
-      type3_price: 'от 130 000 ₽',
-      type4_name: 'Двуязычный AR/RU',
-      type4_meta: 'RTL + LTR, переключение',
-      type4_price: 'от 85 000 ₽',
-      extras_title: 'ДОПОЛНИТЕЛЬНО',
-      extra1: 'SEO-оптимизация',
-      extra2: 'CRM-интеграция',
-      extra3: 'Аналитика',
-      extra4: 'Мультиязычность',
-      extra5: 'Чат-виджет',
-      calc_total: 'ИТОГО',
-      calc_deadline_prefix: 'Срок: ' + calcDays + ' дней',
-      calc_cta: 'ОБСУДИТЬ ПРОЕКТ',
-      cta_label: 'НАЧНЁМ?',
-      cta_h2: 'ПОГОВОРИМ<br><span class="accent">О ВАШЕМ</span><br>ПРОЕКТЕ?',
-      cta_sub: 'Расскажите о задаче — предложу решение и смету бесплатно.',
-      cta_wa: 'НАПИСАТЬ В WHATSAPP',
-      cta_tg: 'TELEGRAM',
-      contacts_label: 'КОНТАКТЫ',
-      contacts_h2: 'НА СВЯЗИ',
-      footer: '© 2025 Далир Мансуров — Веб-дизайн и разработка'
-    },
-    ar: {
-      nav_cta: 'مناقشة المشروع',
-      hero_tag: 'مصمم ومطور مواقع · متاح للمشاريع',
-      hero_sub: 'أصمم مواقع <strong>تبيع</strong>.<br>من التحليل التسويقي إلى الموقع المباشر — بشكل متكامل.<br>منتجك يستحق تصميماً يعمل.',
-      hero_btn1: 'عرض الأعمال',
-      hero_btn2: 'احسب المشروع',
-      stat1: 'مشاريع في الأعمال',
-      stat2: 'سنوات خبرة في التصميم',
-      stat3: 'مراحل في كل مشروع',
-      nomy_label: 'مبادئي',
-      nomy1: 'المهرجانات الموسيقية',
-      nomy2: 'المطربون والفنانون',
-      nomy3: 'القمار',
-      nomy4: 'الرهانات الرياضية',
-      nomy5: 'صناعة التجميل',
-      nomy6: 'UFC والفنون القتالية',
-      nomy7: 'الفوائد البنكية (ربا)',
-      process_label: 'كيف أعمل',
-      process_h2: 'عمليتي',
-      process_hint: '↑ اضغط على البطاقة أعلاه — ستظهر هنا',
-      step1_title: 'التحليل التسويقي',
-      step2_title: 'النموذج الأولي + النص',
-      step3_title: 'مفهوم التصميم',
-      step4_title: 'تصميم المخطط',
-      step5_title: 'التطوير على Tilda',
-      step6_title: 'التكيف مع الأجهزة',
-      step7_title: 'التكاملات',
-      step8_title: 'الاختبار والإطلاق',
-      step1_desc: 'أدرس المنافسين والجمهور المستهدف والسوق. نصيغ العرض الفريد والتموضع. بدون ذلك التصميم يكون عشوائياً.',
-      step2_desc: 'أصمم wireframe لكل صفحة في Figma. أحدد بنية الكتل والعناوين وCTA قبل بدء التصميم.',
-      step3_desc: 'أطور الأسلوب البصري: الألوان والخطوط والجو العام. أعرض 1-2 اتجاهات للموافقة.',
-      step4_desc: 'المخطط النهائي لجميع الصفحات في Figma. جميع الشاشات وحالات الأزرار وتأثيرات hover. نوافق قبل البرمجة.',
-      step5_desc: 'أبني الموقع في Tilda Zero Block مع الالتزام بالتصميم البكسلي الدقيق. CSS وJS مخصص للتأثيرات المعقدة.',
-      step6_desc: 'الإعداد لجميع الأحجام: iPhone SE → iPad → Desktop. أختبر على الأجهزة الحقيقية في BrowserStack.',
-      step7_desc: 'أربط CRM والدفع الإلكتروني والتحليلات وأدوات الدردشة وأزرار WhatsApp.',
-      step8_desc: 'قائمة تحقق نهائية: النماذج والدفع والسرعة والإصدار المحمول. ننشر. أتابع 30 يوماً.',
-      about_label: 'عني',
-      about_h2: 'دالير منصوروف',
-      about_p1: 'مصمم ومطور مواقع من طاجيكستان. متخصص في إنشاء مواقع لا تبدو جميلة فحسب — بل تعمل لصالح العمل.',
-      // FIX #10: corrected Arabic grammar
-      about_p2: 'قضيت ١٠ شهور في الرياض أعمل مع عملاء عرب. هذه التجربة منحتني فهماً عميقاً للثقافة ومتطلبات السوق الشرق أوسطية. وتعَّلمت.',
-      about_p3: 'أعمل بالتكامل بين التصميم والتطوير: Figma → Tilda Zero Block. كل مشروع هو نهج منهجي من التحليل إلى الإطلاق.',
-      calc_label: 'تكلفة المشروع',
-      calc_h2: 'الآلة الحاسبة',
-      type1_name: 'صفحة هبوط',
-      type1_meta: 'صفحة واحدة · حتى 10 أقسام',
-      type1_price: 'من 2000 ريال',
-      type2_name: 'متجر إلكتروني',
-      type2_meta: 'كتالوج، سلة، دفع',
-      type2_price: 'من 4000 ريال',
-      type3_name: 'موقع مؤسسي',
-      type3_meta: 'متعدد الصفحات، CRM',
-      type3_price: 'من 5200 ريال',
-      type4_name: 'ثنائي اللغة AR/RU',
-      type4_meta: 'RTL + LTR، تبديل',
-      type4_price: 'من 3400 ريال',
-      extras_title: 'إضافات',
-      extra1: 'تحسين SEO',
-      extra2: 'تكامل CRM',
-      extra3: 'التحليلات',
-      extra4: 'التعدد اللغوي',
-      extra5: 'أداة الدردشة',
-      calc_total: 'المجموع',
-      calc_deadline_prefix: 'المدة: ' + calcDays + ' أيام',
-      calc_cta: 'مناقشة المشروع',
-      cta_label: 'هل نبدأ؟',
-      cta_h2: 'هل نتحدث<br><span class="accent">عن مشروعك</span>؟',
-      cta_sub: 'أخبرني عن المهمة — سأقترح حلاً وميزانية مجاناً.',
-      cta_wa: 'الكتابة عبر واتساب',
-      cta_tg: 'تيليغرام',
-      contacts_label: 'جهات الاتصال',
-      contacts_h2: 'على تواصل',
-      footer: '© 2025 دالير منصوروف — تصميم وتطوير المواقع'
-    }
-  };
+<!-- CTA -->
 
-  var STEPS = {
-    ru: [
-      { num:'01', title:'Маркетинговый анализ', desc:'Изучаю конкурентов, целевую аудиторию, рынок. Формулируем УТП и позиционирование. Без этого — дизайн вслепую.' },
-      { num:'02', title:'Прототип страниц + текст', desc:'Создаю wireframe каждой страницы в Figma. Прописываю структуру блоков, заголовки и CTA до начала дизайна.' },
-      { num:'03', title:'Дизайн-концепция', desc:'Разрабатываю визуальный стиль: цвета, шрифты, настроение. Показываю 1–2 варианта направления на согласование.' },
-      { num:'04', title:'Дизайн-макет', desc:'Финальный макет всех страниц в Figma. Все экраны, состояния кнопок, hover-эффекты. Согласуем до верстки.' },
-      { num:'05', title:'Верстка на Tilda', desc:'Собираю сайт в Tilda Zero Block с соблюдением пиксель-перфект дизайна. Кастомный CSS и JS для сложных эффектов.' },
-      { num:'06', title:'Адаптивность', desc:'Настройка для всех размеров: iPhone SE → iPad → Desktop. Тестирую на реальных устройствах в BrowserStack.' },
-      { num:'07', title:'Интеграции', desc:'Подключаю CRM, эквайринг (Т-Банк, ЮKassa), аналитику (Яндекс.Метрика, GA4), чат-виджеты, WhatsApp-кнопки.' },
-      { num:'08', title:'Тестирование и запуск', desc:'Финальный чеклист: формы, оплата, скорость (PageSpeed), мобильная версия. Публикуем. Сопровождаю 30 дней.' }
-    ],
-    ar: [
-      { num:'01', title:'التحليل التسويقي', desc:'أدرس المنافسين والجمهور المستهدف والسوق. نصيغ العرض الفريد والتموضع.' },
-      { num:'02', title:'النموذج الأولي + النص', desc:'أصمم wireframe لكل صفحة في Figma. أحدد بنية الكتل والعناوين وCTA.' },
-      { num:'03', title:'مفهوم التصميم', desc:'أطور الأسلوب البصري: الألوان والخطوط والجو العام. أعرض 1-2 اتجاهات للموافقة.' },
-      { num:'04', title:'تصميم المخطط', desc:'المخطط النهائي لجميع الصفحات في Figma. جميع الشاشات وحالات الأزرار.' },
-      { num:'05', title:'التطوير على Tilda', desc:'أبني الموقع في Tilda Zero Block مع الالتزام بالتصميم البكسلي الدقيق.' },
-      { num:'06', title:'التكيف مع الأجهزة', desc:'الإعداد لجميع الأحجام: iPhone SE → iPad → Desktop.' },
-      { num:'07', title:'التكاملات', desc:'أربط CRM والدفع الإلكتروني والتحليلات وأدوات الدردشة.' },
-      { num:'08', title:'الاختبار والإطلاق', desc:'قائمة تحقق نهائية. ننشر. أتابع 30 يوماً.' }
-    ]
-  };
+<section id="cta">
+  <div class="cta-glow"></div>
+  <div style="position:relative;">
+    <div class="label reveal" style="justify-content:center;" data-i18n="cta.label">Начнём?</div>
+    <h2 class="cta-h2 reveal" data-i18n="cta.h2">ЕСТЬ ПРОЕКТ?<br><em>ПОГОВОРИМ.</em></h2>
+    <p class="cta-sub reveal" data-i18n="cta.sub">Расскажите о вашей задаче — я отвечу в течение нескольких часов и предложу решение.</p>
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;" class="reveal">
+      <a href="https://wa.me/79513894443" class="btn-gold" data-i18n="cta.btn1">WhatsApp →</a>
+      <a href="https://t.me/Dalir37" class="btn-ghost" data-i18n="cta.btn2">Telegram</a>
+    </div>
+    <div class="cta-contacts reveal">
+      <a href="https://instagram.com/mansurov.dalir2018" class="cta-contact">Instagram</a>
+      <a href="/cdn-cgi/l/email-protection#dcb8bdb0b5ae9cb1bdb2afa9aeb3aaf2b8b9afb5bbb2" class="cta-contact"><span class="__cf_email__" data-cfemail="ec888d80859eac818d829f999e839ac288899f858b82">[email&#160;protected]</span></a>
+    </div>
+  </div>
+</section>
 
-  var currentStep = null;
+<footer>
+  <div class="footer-copy" data-i18n="footer.copy">© 2026 Далир Мансуров — Веб-дизайн и разработка</div>
+  <div class="footer-made" data-i18n="footer.made">Этот сайт создан мной · Tilda + Zero Block</div>
+</footer>
 
-  function showStep(n) {
-    currentStep = n;
-    var step = STEPS[currentLang][n - 1];
-    var detail = document.getElementById('processDetail');
-    if (!detail) return;
-    detail.innerHTML =
-      '<div class="detail-num">' + step.num + '</div>' +
-      '<div class="detail-title">' + step.title + '</div>' +
-      '<div class="detail-desc">' + step.desc + '</div>';
+<script>
+
+// ── CURSOR ──
+const cur = document.getElementById(‘cursor’);
+const curR = document.getElementById(‘cursor-ring’);
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener(‘mousemove’,e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+‘px’;cur.style.top=my+‘px’;});
+function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;curR.style.left=rx+‘px’;curR.style.top=ry+‘px’;requestAnimationFrame(animRing);}
+animRing();
+
+// ── COUNTER ANIMATION (slot-machine style) ──
+function animCount(el,target){
+el.classList.add(‘slot’);
+let start=0,dur=1600,startTime=null;
+function step(t){
+  if(!startTime)startTime=t;
+  let p=Math.min((t-startTime)/dur,1);
+  // Ease out cubic
+  let ease=1-Math.pow(1-p,3);
+  let v=Math.round(ease*target);
+  el.textContent=v;
+  if(p<1)requestAnimationFrame(step);
+}
+requestAnimationFrame(step);
+}
+const counters=document.querySelectorAll(‘[data-count]’);
+const countObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animCount(e.target,parseInt(e.target.dataset.count));countObs.unobserve(e.target);}});},{threshold:0.3});
+counters.forEach(c=>countObs.observe(c));
+
+// ── INTERSECTION REVEAL ──
+const revealEls=document.querySelectorAll(’.reveal’);
+const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add(‘visible’);revObs.unobserve(e.target);}});},{threshold:0.1,rootMargin:‘0px 0px -60px 0px’});
+revealEls.forEach(el=>revObs.observe(el));
+
+// ── METHODOLOGY ACTIVATION ──
+const steps=document.querySelectorAll(’.method-step’);
+const stObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add(‘active’);});},{threshold:0.4});
+steps.forEach(s=>stObs.observe(s));
+
+// ── SKILL BARS ──
+const bars=document.querySelectorAll(’.skill-bar’);
+const barObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.dataset.width+’%’;barObs.unobserve(e.target);}});},{threshold:0.5});
+bars.forEach(b=>barObs.observe(b));
+
+// ── SHREDDER ──
+const canvas=document.getElementById(‘shredder-canvas’);
+const ctx=canvas.getContext(‘2d’);
+let particles=[];
+
+class Strip{
+constructor(text,x){
+this.text=text;
+this.x=x;
+this.y=-30;
+this.w=8;
+this.h=Math.random()*40+20;
+this.vy=Math.random()*3+2;
+this.wobble=Math.random()*0.3-0.15;
+this.angle=0;
+this.opacity=1;
+this.color=`hsl(${Math.random()*20+355},60%,${Math.random()*20+30}%)`;
+}
+update(){
+this.y+=this.vy;
+this.angle+=this.wobble;
+if(this.y>canvas.height)this.opacity-=0.05;
+}
+draw(){
+ctx.save();
+ctx.translate(this.x+this.w/2,this.y+this.h/2);
+ctx.rotate(this.angle);
+ctx.globalAlpha=Math.max(0,this.opacity);
+ctx.fillStyle=this.color;
+ctx.fillRect(-this.w/2,-this.h/2,this.w,this.h);
+ctx.globalAlpha=1;
+ctx.restore();
+}
+}
+
+function shred(text){
+const w=canvas.width;
+const count=Math.floor(w/10);
+for(let i=0;i<count;i++){
+particles.push(new Strip(text,i*10+Math.random()*5));
+}
+// Top shredder bar flash
+ctx.fillStyle=‘rgba(139,58,47,0.8)’;
+ctx.fillRect(0,0,canvas.width,20);
+}
+
+function renderShredder(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+// Background
+ctx.fillStyle=‘rgba(12,8,16,0.95)’;
+ctx.fillRect(0,0,canvas.width,canvas.height);
+// Shredder head
+ctx.fillStyle=‘rgba(30,20,40,1)’;
+ctx.fillRect(0,0,canvas.width,28);
+// Teeth
+for(let i=0;i<canvas.width;i+=14){
+ctx.fillStyle=‘rgba(60,40,80,1)’;
+ctx.fillRect(i,22,8,10);
+}
+ctx.fillStyle=‘rgba(139,58,47,0.5)’;
+ctx.fillRect(0,28,canvas.width,1);
+// Particles
+particles=particles.filter(p=>p.opacity>0);
+particles.forEach(p=>{p.update();p.draw();});
+// Label if empty
+if(particles.length===0){
+ctx.fillStyle=‘rgba(139,58,47,0.2)’;
+ctx.font=‘13px DM Sans, sans-serif’;
+ctx.textAlign=‘center’;
+ctx.letterSpacing=‘3px’;
+ctx.fillText(‘НАЖМИТЕ НА КАРТОЧКУ ВЫШЕ’, canvas.width/2, canvas.height/2);
+}
+requestAnimationFrame(renderShredder);
+}
+renderShredder();
+
+document.querySelectorAll(’.reject-item’).forEach(item=>{
+item.addEventListener(‘click’,function(){
+shred(this.textContent);
+this.style.opacity=‘0.2’;
+this.style.textDecoration=‘line-through’;
+this.style.color=‘rgba(139,58,47,0.4)’;
+this.style.borderColor=‘rgba(139,58,47,0.1)’;
+this.style.pointerEvents=‘none’;
+setTimeout(()=>this.style.pointerEvents=‘auto’,100);
+});
+});
+
+// ── CALCULATOR ──
+let basePrice=50000, baseTime=10;
+const pageSlider=document.getElementById(‘pageCount’);
+const pageLabel=document.getElementById(‘pageCountLabel’);
+const priceEl=document.getElementById(‘calcPrice’);
+const timeEl=document.getElementById(‘calcTime’);
+
+function updateCalc(){
+const pages=parseInt(pageSlider.value);
+const extras=Array.from(document.querySelectorAll(‘#calcExtras .calc-toggle.on’)).reduce((s,t)=>s+parseInt(t.dataset.extra),0);
+const pageBonus=Math.max(0,(pages-5))*5000;
+const total=basePrice+pageBonus+extras;
+const days=baseTime+Math.max(0,(pages-5))*2+Math.round(extras/8000);
+const daysLabel = getNestedValue(CONTENT[currentLang], ‘calc.days’) || ‘дней’;
+if(currentLang===’ar’){
+  const sar=Math.round(total/25);
+  // U+20C1 = Saudi Riyal sign (Unicode 17.0, Feb 2025). Fallback to ﷼ if not rendered.
+  priceEl.innerHTML=sar.toLocaleString(‘ar-SA’)+’<span class="sar-sym">&#x20C1;</span>’;
+} else {
+  priceEl.textContent=total.toLocaleString(‘ru-RU’)+’ ₽’;
+}
+timeEl.textContent=’~’+days+’ ‘+daysLabel;
+}
+
+pageSlider.addEventListener(‘input’,function(){pageLabel.textContent=this.value;updateCalc();});
+
+document.querySelectorAll(’#calcType .calc-toggle’).forEach(btn=>{
+btn.addEventListener(‘click’,function(){
+document.querySelectorAll(’#calcType .calc-toggle’).forEach(b=>{b.classList.remove(‘on’);});
+this.classList.add(‘on’);
+basePrice=parseInt(this.dataset.base);
+baseTime=parseInt(this.dataset.time);
+const calcTypeLabelEl2 = document.getElementById(‘calcTypeLabel’);
+if(calcTypeLabelEl2) calcTypeLabelEl2.textContent=this.textContent;
+updateCalc();
+});
+});
+
+document.querySelectorAll(’#calcExtras .calc-toggle’).forEach(btn=>{
+btn.addEventListener(‘click’,function(){
+this.classList.toggle(‘on’);
+updateCalc();
+});
+});
+
+// ── PORTFOLIO MODALS ──
+const modals={
+aravia:{
+color:’#6B3FA0’,
+tag:‘Паломнические туры · 2024’,
+title:‘VISIT ARAVIA’,
+meta:[
+{l:‘Тип’,v:‘Коммерческий сайт’},
+{l:‘Платформа’,v:‘Tilda Zero Block’},
+{l:‘Тематика’,v:‘Умра и Хадж, Саудовская Аравия’},
+{l:‘Результат’,v:‘Прямые продажи туров через сайт’}
+],
+about:‘Компания Visit Aravia занимается организацией паломнических туров для Умры и Хаджа. Задача — создать фирменный сайт с нуля, который будет не просто визиткой, но полноценным инструментом продаж с онлайн-оплатой через Т-Банк эквайринг.’,
+steps:[
+{t:‘Маркетинговый анализ’,d:‘Изучил конкурентов на рынке паломнических туров, выявил ключевые триггеры доверия целевой аудитории — мусульман, планирующих Умру или Хадж.’},
+{t:‘Структура и прототип’,d:‘Разработал структуру сайта: главная, каталог туров, отдельные страницы Gold/Platinum, Рамадан, Хадж, страница партнёрства с фондом Tooba.’},
+{t:‘Дизайн-концепция’,d:‘Фиолетово-золотая палитра (#6B3FA0, #D4A843). Арабская каллиграфия, тёмный фон. Премиум-ощущение паломнического сервиса.’},
+{t:‘Верстка и запуск’,d:‘Верстка в Tilda, кастомный CSS/JS, подключение эквайринга Т-Банк, страница после оплаты /thanks, интеграция WhatsApp.’},
+],
+link:‘http://aravia-visit.ru’,
+linkLabel:‘Открыть сайт →’,
+figma:‘https://www.figma.com/file/xgeu9hjX0pzcFLJcC4oZst’,
+},
+milana:{
+color:’#8B5E4A’,
+tag:‘Fashion E-commerce · 2024’,
+title:‘МАГАЗИН МИЛАНА’,
+meta:[
+{l:‘Тип’,v:‘Интернет-магазин’},
+{l:‘Платформа’,v:‘Tilda’},
+{l:‘Тематика’,v:‘Женская одежда’},
+{l:‘Результат’,v:‘Запущен магазин с онлайн-продажами’}
+],
+about:‘Интернет-магазин для продажи женской одежды. Проект включал создание прототипа, дизайн-макета и верстку в Tilda, с полной адаптацией для мобильных устройств и подключением домена.’,
+steps:[
+{t:‘Прототипирование’,d:‘Создал wireframe каталога, карточек товаров, корзины и чекаута. Продумал путь пользователя от первого посещения до покупки.’},
+{t:‘Дизайн-макет’,d:‘Тёплая, женственная цветовая гамма. Крупные фотографии, минималистичная типографика. Акцент на продукт, не на интерфейс.’},
+{t:‘Верстка в Tilda’,d:‘Сборка всех страниц, настройка каталога и фильтров. Интеграция с платёжной системой.’},
+{t:‘Адаптив и запуск’,d:‘Проверка на iPhone SE, iPhone 14, iPad, Android. Подключение домена, финальное тестирование форм и оплаты.’},
+],
+link:‘https://www.instagram.com/reel/DH8smlUOPUk/’,
+linkLabel:‘Смотреть кейс в Instagram →’,
+},
+rehab:{
+color:’#1A4A3A’,
+tag:‘Медицина · Реабилитация · 2024’,
+title:‘REHABMEN’,
+meta:[
+{l:‘Тип’,v:‘Корпоративный сайт’},
+{l:‘Платформа’,v:‘Tilda’},
+{l:‘Тематика’,v:‘Центр восстановления для мужчин’},
+{l:‘Результат’,v:‘Верстка + анимации pop-up услуг’}
+],
+about:‘REHABMEN — центр восстановления для мужчин после нагрузок, травм и стрессов. Задача: верстка готового дизайн-макета, добавление интерактивных pop-up окон для каждой услуги.’,
+steps:[
+{t:‘Верстка макета’,d:‘Pixel-perfect перенос дизайн-макета в Tilda. Сохранение всех отступов, типографики и визуальных деталей.’},
+{t:‘Pop-up анимации’,d:‘Разработал систему всплывающих окон для раздела услуг: при клике на название услуги открывается подробное описание с анимацией.’},
+{t:‘Адаптивность’,d:‘Настройка всех блоков для мобильных устройств. Особое внимание — pop-up на маленьких экранах.’},
+{t:‘Тестирование’,d:‘Проверка всех ссылок, форм, pop-up окон на разных устройствах. Оптимизация скорости загрузки.’},
+],
+link:‘https://rehabmen.ru/page82038496.html’,
+linkLabel:‘Открыть сайт →’,
+}
+};
+
+function openModal(key){
+const m=modals[key];
+const overlay=document.getElementById(‘modal-overlay’);
+// Remove old themes
+overlay.className=‘open’;
+overlay.classList.add(‘theme-’+key);
+
+// Calligraphy decoration for aravia
+const calligraphy=key===‘aravia’?’<div class="modal-calligraphy">بِسْمِ ٱللَّٰهِ</div>’:’’;
+
+const stepsHtml=m.steps.map((s,i)=>` <div class="modal-step" style="border-left:2px solid ${m.color}40;"> <div class="modal-step-n">0${i+1}</div> <div class="modal-step-t">${s.t}</div> <div class="modal-step-d">${s.d}</div> </div>`).join(’’);
+const metaHtml=m.meta.map(x=>`<div class="modal-meta-item"><div class="modal-meta-label">${x.l}</div><div class="modal-meta-val">${x.v}</div></div>`).join(’’);
+const figmaHtml=m.figma?`<a href="${m.figma}" target="_blank" class="modal-link" style="margin-left:12px;color:${m.color};border-color:${m.color}60;">Дизайн в Figma →</a>`:’’;
+
+document.getElementById(‘modalContent’).innerHTML=`${calligraphy} <div class="modal-tag">${m.tag}</div> <div class="modal-title" style="color:${m.color};">${m.title}</div> <div class="modal-meta">${metaHtml}</div> <div class="modal-divider" style="background:${m.color}30;"></div> <div class="modal-section-title" style="color:${m.color};">О проекте</div> <p class="modal-text">${m.about}</p> <div class="modal-divider" style="background:${m.color}30;"></div> <div class="modal-section-title" style="color:${m.color};">Шаги работы</div> <div class="modal-steps">${stepsHtml}</div> <div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:12px;"> <a href="${m.link}" target="_blank" class="modal-link" style="color:${m.color};border-color:${m.color}60;">${m.linkLabel}</a> ${figmaHtml} </div>`;
+overlay.classList.add(‘open’);
+document.body.style.overflow=‘hidden’;
+}
+
+function closeModal(){
+document.getElementById(‘modal-overlay’).classList.remove(‘open’);
+document.body.style.overflow=’’;
+}
+
+document.addEventListener(‘keydown’,e=>{if(e.key===‘Escape’)closeModal();});
+
+// ── BURGER MENU ──
+function toggleMobileNav(){
+const nav=document.getElementById(‘mobileNav’);
+const burger=document.getElementById(‘burger’);
+const isOpen=nav.classList.contains(‘open’);
+if(isOpen){
+nav.classList.remove(‘open’);
+burger.classList.remove(‘open’);
+document.body.style.overflow=’’;
+} else {
+nav.classList.add(‘open’);
+burger.classList.add(‘open’);
+document.body.style.overflow=‘hidden’;
+}
+}
+function closeMobileNav(){
+document.getElementById(‘mobileNav’).classList.remove(‘open’);
+document.getElementById(‘burger’).classList.remove(‘open’);
+document.body.style.overflow=’’;
+}
+
+// ── I18N LANGUAGE SWITCHER ──
+const CONTENT = {
+ru: {
+nav:{ logo:‘Далир·М’, services:‘Услуги’, process:‘Процесс’, works:‘Работы’, about:‘Обо мне’, cta:‘Обсудить проект’ },
+hero:{
+tag:‘Веб-дизайнер и разработчик · Доступен для проектов’,
+h1_line1:‘ДАЛИР’, h1_line2_accent:‘МАН’, h1_line2_rest:‘СУРОВ’,
+sub:‘Создаю сайты, которые <strong>продают</strong>.<br>От маркетингового анализа до живого сайта — под ключ.<br>Ваш продукт заслуживает дизайна, который работает.’,
+btn1:‘Смотреть работы’, btn2:‘Рассчитать проект’,
+stat1_l:‘Проекта в портфолио’, stat2_l:‘Месяцев в Эр-Рияде’, stat3_l:‘Этапов в каждом проекте’
+},
+services:{ label:‘Что создаю’, h2:‘ПРОЕКТЫ КОТОРЫЕ<br><span style="color:var(--gold);">Я БЕРУ В РАБОТУ</span>’ },
+service:{
+t1:‘Лендинг / Сайт-визитка’, d1:‘Продающие одностраничники для услуг, продуктов, личного бренда. Фокус на конверсии и доверии.’,
+t2:‘Интернет-магазин’, d2:‘Полноценный магазин с каталогом, корзиной, оплатой. Визуально — на уровне премиум-брендов.’,
+t3:‘Корпоративный сайт’, d3:‘Многостраничные сайты для компаний с разделами, командой, услугами и блогом.’,
+t4:‘Медицина и здоровье’, d4:‘Клиники, реабилитационные центры, врачи. Дизайн, который вызывает доверие.’,
+t5:‘Туризм и паломничество’, d5:‘Сайты для тур-агентств, паломнических туров, путеводителей. С учётом культурного контекста.’,
+t6:‘Двуязычные сайты (AR/RU)’, d6:‘RTL-адаптация под арабский рынок. Шрифты Cairo и Noto Naskh. Учёт культуры Саудовской Аравии.’
+},
+shredder:{
+label:‘Не берусь за’,
+big:‘НЕ МОЯ РАБОТА’,
+sub:‘Ниже — проекты, с которыми я принципиально не работаю.<br>Нажми на любой — и он уйдёт в шредер.’,
+hint:‘↑ Нажми на карточку выше — она попадёт сюда’
+},
+reject:{ r1:‘🎵 Музыкальные фестивали’, r2:‘🎤 Певцы и артисты’, r3:‘🎰 Азартные игры’, r4:‘⚽ Ставки на спорт’, r5:‘💄 Бьюти-индустрия’, r6:‘🥊 UFC и единоборства’, r7:‘💰 Банковские проценты (риба)’ },
+method:{
+label:‘Как я работаю’,
+h2:‘8 ШАГОВ ОТ ИДЕИ<br><span style="color:var(--gold);">ДО ЖИВОГО САЙТА</span>’
+},
+step:{
+t1:‘Маркетинговый анализ’, d1:‘Изучаю конкурентов, целевую аудиторию, рынок. Формулируем УТП и позиционирование. Без этого — дизайн вслепую.’,
+t2:‘Прототип страниц + текст’, d2:‘Создаю wireframe каждой страницы в Figma. Прописываю структуру блоков, заголовки и CTA до начала дизайна.’,
+t3:‘Дизайн-концепция’, d3:‘Разрабатываю визуальный стиль: цвета, шрифты, настроение. Показываю 1–2 варианта направления на согласование.’,
+t4:‘Дизайн-макет’, d4:‘Финальный макет всех страниц в Figma. Все экраны, состояния кнопок, hover-эффекты. Согласуем до верстки.’,
+t5:‘Верстка на Tilda’, d5:‘Собираю сайт в Tilda Zero Block с соблюдением пиксель-перфект дизайна. Кастомный CSS и JS для сложных эффектов.’,
+t6:‘Адаптивность’, d6:‘Настройка для всех размеров: iPhone SE → iPad → Desktop. Тестирую на реальных устройствах в BrowserStack.’,
+t7:‘Интеграции’, d7:‘Подключаю CRM, эквайринг (Т-Банк, ЮKassa), аналитику (Яндекс.Метрика, GA4), чат-виджеты, WhatsApp-кнопки.’,
+t8:‘Тестирование и запуск’, d8:‘Финальный чеклист: формы, оплата, скорость (PageSpeed), мобильная версия. Публикуем. Сопровождаю 30 дней.’
+},
+calc:{ label:‘Стоимость проекта’, h2:‘РАССЧИТАЙТЕ<br><span style="color:var(--gold);">СВОЙ САЙТ</span>’,
+typeLabel:‘Тип проекта’, pageLabel:‘Количество страниц’, extrasLabel:‘Дополнительные услуги’,
+priceLabel:’Стоимость проекта’, timeLabel:’Сроки’, btn:’Обсудить проект →’,
+days:’дней’, priceDefault:’50 000 ₽’, timeDefault:’~10 дней’,
+type1:’Лендинг’, type2:’Интернет-магазин’, type3:’Корпоративный сайт’, type4:’Двуязычный сайт AR/RU’,
+e1:’+Анимации и интерактив’, e2:’+Подключение оплаты’, e3:’+Настройка Яндекс.Метрика’,
+e4:’+SEO-оптимизация’, e5:’+Контент (тексты + фото)’, e6:’+Домен + хостинг 1 год’, e7:’+Интеграция CRM’
+},
+portfolio:{ label:‘Мои работы’, h2:‘ПОРТФОЛИО’, sub:‘Нажмите на проект, чтобы увидеть детали — как создавался, какие шаги были сделаны, что получилось.’,
+tag1:‘Умра · Хадж · Паломничество’, name1:‘Visit Aravia’,
+detail1:‘Фирменный сайт для продажи паломнических туров в Саудовскую Аравию. Tilda, кастомный дизайн.’,
+link1:‘Смотреть проект →’,
+tag2:‘Fashion · E-commerce’, name2:‘Магазин Милана’,
+detail2:‘Интернет-магазин женской одежды. Прототип → дизайн → верстка → запуск на Tilda.’,
+link2:‘Смотреть проект →’,
+tag3:‘Медицина · Реабилитация’, name3:‘REHABMEN’,
+detail3:‘Центр восстановления для мужчин. Верстка макета, анимации pop-up для услуг.’,
+link3:‘Смотреть проект →’
+},
+about:{
+label:‘Обо мне’,
+h2:‘ВЕБ-ДИЗАЙН — ЭТО<br><em>МОЙ ЯЗЫК</em>’,
+p1:’Создаю сайты, в которых дизайн — не украшение, а инструмент продаж. Веб-дизайнер из России. Каждый проект начинается с глубокого понимания бизнеса клиента, его аудитории и целей.’,
+p2:’Провёл 10 месяцев в Эр-Рияде, изучая арабский язык в Глобальной академии имени короля Салмана — это даёт мне уникальную возможность создавать сайты для мусульманской аудитории и арабского рынка.’,
+p3:‘Специализируюсь на Tilda, потому что это инструмент, дающий максимальный результат при минимальных затратах на поддержку. Клиент может сам вносить мелкие правки.’
+},
+skill:{ s1:‘UI/UX Дизайн (Figma)’, s2:‘Верстка на Tilda’, s3:‘CSS / JS анимации’, s4:‘Адаптивная вёрстка’, s5:‘RTL / Арабский рынок’ },
+cta:{
+label:‘Начнём?’,
+h2:‘ЕСТЬ ПРОЕКТ?<br><em>ПОГОВОРИМ.</em>’,
+sub:‘Расскажите о вашей задаче — я отвечу в течение нескольких часов и предложу решение.’,
+btn1:‘WhatsApp →’, btn2:‘Telegram’
+},
+footer:{ copy:‘© 2026 Далир Мансуров — Веб-дизайн и разработка’, made:‘Этот сайт создан мной · Tilda + Zero Block’ }
+},
+
+ar: {
+nav:{ logo:‘دالير·م’, services:‘الخدمات’, process:‘المنهجية’, works:‘الأعمال’, about:‘نبذة عني’, cta:‘ناقش مشروعك’ },
+hero:{
+tag:‘مصمم ومطوِّر مواقع · متاح للمشاريع الجديدة’,
+h1_line1:‘منصوروف’, h1_line2_accent:‘دالير’, h1_line2_rest:’’,
+sub:‘أُصمِّم مواقع <strong>تبيع وتُقنع</strong>.<br>من التحليل التسويقي حتى الإطلاق — مشروع متكامل.<br>منتجك يستحقّ تصميماً يعمل ويؤثِّر.’,
+btn1:‘مشاهدة الأعمال’, btn2:‘احسب تكلفة مشروعك’,
+stat1_l:‘مشاريع منجزة’, stat2_l:‘شهراً في الرياض’, stat3_l:‘خطوة في كلّ مشروع’
+},
+services:{ label:‘ما الذي أصنعه’, h2:‘المشاريع التي<br><span style="color:var(--gold);">أقبلها</span>’ },
+service:{
+t1:‘صفحة هبوط / موقع بطاقة’, d1:‘صفحات هبوط تحويلية للخدمات والمنتجات والعلامة الشخصية. التركيز على التحويل وبناء الثقة.’,
+t2:‘متجر إلكتروني’, d2:‘متجر متكامل بكتالوج وسلة وبوابات دفع. مستوى التصميم يضاهي أبرز العلامات التجارية.’,
+t3:‘موقع شركة’, d3:‘مواقع متعدِّدة الصفحات للشركات تشمل الفريق والخدمات والمدوَّنة.’,
+t4:‘الطب والصحة’, d4:‘عيادات ومراكز إعادة التأهيل وصفحات الأطباء. تصميم يبني الثقة لدى المريض.’,
+t5:‘السياحة والحج’, d5:‘مواقع لوكالات السفر وجولات الحج والعمرة والأدلة السياحية. مراعاة للسياق الثقافي والديني.’,
+t6:‘مواقع ثنائية اللغة AR/RU’, d6:‘تكييف كامل لدعم RTL للسوق العربي. خطوط Cairo وNoto Naskh. احترام الثقافة الخليجية.’
+},
+shredder:{
+label:‘لا أعمل في’,
+big:‘لا أقبل هذه المشاريع’,
+sub:‘هذه المجالات تتعارض مع قيمي ومبادئي الإسلامية.<br>انقر على أيٍّ منها لترى مصيره.’,
+hint:‘↑ انقر على البطاقة أعلاه — ستصل إلى هنا’
+},
+reject:{ r1:‘🎵 مهرجانات موسيقية’, r2:‘🎤 مغنّون وفنّانون’, r3:‘🎰 الألعاب والقمار’, r4:‘⚽ الرهانات الرياضية’, r5:‘💄 صناعة التجميل’, r6:‘🥊 UFC والفنون القتالية’, r7:‘💰 البنوك والربا (الفائدة)’ },
+method:{
+label:‘كيف أعمل’,
+h2:‘٨ خطوات من الفكرة<br><span style="color:var(--gold);">إلى الموقع المباشر</span>’
+},
+step:{
+t1:‘التحليل التسويقي’, d1:‘أدرس المنافسين والجمهور المستهدف والسوق. نصوغ معاً عرض القيمة الفريد والتموضع الصحيح. بدون هذا — التصميم في الظلام.’,
+t2:‘النموذج الأولي + النص’, d2:‘أنشئ wireframe لكلّ صفحة في Figma. أُحدِّد بنية الأقسام والعناوين ودعوات الإجراء قبل البدء بالتصميم.’,
+t3:‘مفهوم التصميم’, d3:‘أطوِّر الهوية البصرية: الألوان والخطوط والمزاج العام. أعرض خيارَين للموافقة قبل المضيّ قُدُماً.’,
+t4:‘الماكيت النهائي’, d4:‘ماكيت كامل لجميع الصفحات في Figma مع جميع الحالات وتأثيرات التحوُّل. نوافق عليه قبل البناء.’,
+t5:‘البناء على Tilda’, d5:‘أبني الموقع في Tilda Zero Block بدقة بكسل مثالية. CSS وJS مخصَّصان للتأثيرات المعقَّدة.’,
+t6:‘التجاوب’, d6:‘إعداد لجميع الأحجام: iPhone SE → iPad → Desktop. أختبر على أجهزة حقيقية عبر BrowserStack.’,
+t7:‘التكاملات’, d7:‘أربط أنظمة CRM وبوابات الدفع وأدوات التحليل وأزرار واتساب وتطبيقات الدردشة.’,
+t8:‘الاختبار والإطلاق’, d8:‘قائمة تحقُّق شاملة: النماذج والدفع والسرعة والنسخة المحمولة. نطلق الموقع مع دعم ٣٠ يوماً.’
+},
+calc:{ label:‘تكلفة المشروع’, h2:‘احسب<br><span style="color:var(--gold);">موقعك</span>’,
+typeLabel:‘نوع المشروع’, pageLabel:‘عدد الصفحات’, extrasLabel:‘خدمات إضافية’,
+priceLabel:’تكلفة المشروع’, timeLabel:’المدة الزمنية’, btn:’ناقش مشروعك ←’,
+days:’يوم’, priceDefault:’50 000 ₽’, timeDefault:’~10 يوم’,
+type1:’صفحة هبوط’, type2:’متجر إلكتروني’, type3:’موقع شركة’, type4:’موقع ثنائي اللغة AR/RU’,
+e1:’+رسوم متحرِّكة وتفاعل’, e2:’+ربط بوابة الدفع’, e3:’+إعداد التحليلات’,
+e4:’+تحسين محركات البحث SEO’, e5:’+المحتوى (نصوص + صور)’, e6:’+نطاق + استضافة سنة’, e7:’+تكامل CRM’
+},
+portfolio:{ label:‘أعمالي’, h2:‘المحفظة’, sub:‘انقر على أيّ مشروع لرؤية تفاصيله — كيف أُنشئ، وما الخطوات، وما النتيجة.’,
+tag1:‘عمرة · حجّ · سياحة دينية’, name1:‘Visit Aravia’,
+detail1:‘موقع احترافي لبيع جولات الحجّ والعمرة إلى المملكة العربية السعودية. Tilda تصميم مخصَّص.’,
+link1:‘مشاهدة المشروع ←’,
+tag2:‘أزياء · تجارة إلكترونية’, name2:‘متجر ميلانا’,
+detail2:‘متجر إلكتروني للملابس النسائية. نموذج أوّلي ← تصميم ← بناء ← إطلاق على Tilda.’,
+link2:‘مشاهدة المشروع ←’,
+tag3:‘طبّ · إعادة تأهيل’, name3:‘REHABMEN’,
+detail3:‘مركز تعافي للرجال. بناء الماكيت وإضافة نوافذ منبثقة متحرِّكة للخدمات.’,
+link3:‘مشاهدة المشروع ←’
+},
+about:{
+label:‘نبذة عني’,
+h2:‘تصميم المواقع<br><em>لغتي</em>’,
+p1:‘أُصمِّم مواقع يكون فيها التصميم أداةَ مبيعات لا مجرَّد زينة. كلّ مشروع يبدأ بفهم عميق لأعمال العميل وجمهوره وأهدافه.’,
+p2:’أقمت في الرياض عشرة أشهر لتعلُّم اللغة العربية في مجمع الملك سلمان العالمي للغة العربية. هذه التجربة أتاحت لي إنشاء مواقع للجمهور المسلم والسوق العربي.’,
+p3:‘أتخصَّص في Tilda لأنّها الأداة التي تُحقِّق أقصى النتائج بأدنى تكاليف الصيانة. يستطيع العميل إجراء التعديلات البسيطة بنفسه.’
+},
+skill:{ s1:‘تصميم UI/UX (Figma)’, s2:‘البناء على Tilda’, s3:‘CSS / JS والرسوم المتحرِّكة’, s4:‘التصميم المتجاوب’, s5:‘RTL / السوق العربي’ },
+cta:{
+label:‘هل أنت مستعد؟’,
+h2:‘لديك مشروع؟<br><em>لنتحدَّث.</em>’,
+sub:‘أخبرني عن مهمَّتك — سأردّ في غضون ساعات وأقترح الحلّ المناسب.’,
+btn1:‘واتساب ←’, btn2:‘تيليغرام’
+},
+footer:{ copy:‘© 2026 منصوروف دالير — تصميم وتطوير المواقع’, made:‘هذا الموقع من تصميمي · Tilda + Zero Block’ }
+}
+};
+
+function getNestedValue(obj, path){
+return path.split(’.’).reduce((acc, key) => acc && acc[key] !== undefined ? acc[key] : null, obj);
+}
+
+let currentLang = ‘ru’;
+
+function switchLang(lang){
+currentLang = lang;
+const isAr = lang === ‘ar’;
+
+document.documentElement.setAttribute(‘dir’, isAr ? ‘rtl’ : ‘ltr’);
+document.documentElement.setAttribute(‘lang’, isAr ? ‘ar’ : ‘ru’);
+document.body.classList.toggle(‘lang-ar’, isAr);
+document.body.classList.toggle(‘lang-ru’, !isAr);
+
+// Update all data-i18n elements
+document.querySelectorAll(’[data-i18n]’).forEach(el => {
+const key = el.dataset.i18n;
+const val = getNestedValue(CONTENT[lang], key);
+if(val !== null && val !== undefined) el.innerHTML = val;
+});
+
+// Sync active calc type label
+const activeType = document.querySelector(’#calcType .calc-toggle.on’);
+const calcTypeLabelEl = document.getElementById(‘calcTypeLabel’);
+if(activeType && calcTypeLabelEl) calcTypeLabelEl.textContent = activeType.textContent;
+
+// Handle reject items (they have nested .strike divs - rebuild them)
+const rejectKeys = [‘reject.r1’,‘reject.r2’,‘reject.r3’,‘reject.r4’,‘reject.r5’,‘reject.r6’,‘reject.r7’];
+document.querySelectorAll(’.reject-item’).forEach((el, i) => {
+const val = getNestedValue(CONTENT[lang], rejectKeys[i]);
+if(val) {
+el.innerHTML = val + ‘<div class="strike"></div>’;
+}
+});
+
+// Hero h1 — Arabic name
+const heroH1 = document.getElementById(‘heroH1’);
+if(heroH1) {
+  heroH1.innerHTML = isAr
+    ? ‘<span class="accent">دالير</span><br><span class="accent">منصوروف</span>’
+    : ‘<span data-i18n="hero.h1_line1">ДАЛИР</span><br><em data-i18n="hero.h1_line2_accent">МАН</em><span class="outline" data-i18n="hero.h1_line2_rest">СУРОВ</span>’;
+}
+
+// "НЕ МОЯ РАБОТА" heading
+const bigNoEl = document.getElementById(‘bigNoEl’);
+if(bigNoEl) {
+  bigNoEl.innerHTML = isAr
+    ? ‘<span style="color:var(--rust);">لا</span> أقبل هذه المشاريع’
+    : ‘НЕ МОЯ РАБОТА’;
+}
+
+// Arabic section: show only in AR mode
+const arabicSection = document.getElementById(‘arabic’);
+if(arabicSection) arabicSection.style.display = isAr ? ‘block’ : ‘none’;
+
+// Update URL
+try {
+const url = new URL(window.location.href);
+isAr ? url.searchParams.set(‘lang’,‘ar’) : url.searchParams.delete(‘lang’);
+window.history.replaceState({}, ‘’, url);
+} catch(e){}
+localStorage.setItem(‘dalir-portfolio-lang’, lang);
+updateCalc();
+}
+
+function initLang(){
+const urlLang = new URL(window.location.href).searchParams.get(‘lang’);
+const saved = localStorage.getItem(‘dalir-portfolio-lang’);
+const lang = urlLang || saved || ‘ru’;
+if(lang !== ‘ru’) switchLang(lang);
+else {
+document.body.classList.add(‘lang-ru’);
+}
+}
+
+document.addEventListener(‘DOMContentLoaded’, initLang);
+
+// ═══════════════════════════════════════════════════
+// AWWWARDS-LEVEL JS ENHANCEMENTS
+// ═══════════════════════════════════════════════════
+
+// ── LOADER ──
+// CSS handles auto-hide after 3s via loaderAutoHide animation.
+// JS just makes the progress bar animate smoothly.
+try {
+  const loader = document.getElementById(‘loader’);
+  const fill   = document.getElementById(‘loaderFill’);
+  const numEl  = document.getElementById(‘loaderNum’);
+  if (loader) {
+    let progress = 0;
+    const tick = setInterval(function() {
+      try {
+        progress += Math.random() * 16 + 5;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(tick);
+          if (fill)  fill.style.transform = ‘scaleX(1)’;
+          if (numEl) numEl.textContent = ‘100’;
+          setTimeout(function() { loader.classList.add(‘hidden’); }, 400);
+        } else {
+          if (fill)  fill.style.transform = ‘scaleX(‘ + (progress / 100) + ‘)’;
+          if (numEl) numEl.textContent = Math.floor(progress);
+        }
+      } catch(e) {}
+    }, 60);
   }
+} catch(e) {}
 
-  // ─── FIX #8: Calculator with SAR for Arabic ───
-  function updateCalc() {
-    var total = calcBase + calcExtras;
-    var priceEl = document.getElementById('calcPrice');
-    var deadlineEl = document.getElementById('calcDeadline');
-    if (!priceEl) return;
-    if (currentLang === 'ar') {
-      var totalSAR = Math.round(total / 25 / 100) * 100;
-      priceEl.textContent = 'ريال ' + totalSAR.toLocaleString('ar-SA');
-    } else {
-      priceEl.textContent = total.toLocaleString('ru-RU') + ' ₽';
-    }
-    if (deadlineEl) {
-      var prefix = currentLang === 'ar' ? 'المدة: ' : 'Срок: ';
-      var suffix = currentLang === 'ar' ? ' أيام' : ' дней';
-      deadlineEl.textContent = prefix + calcDays + suffix;
-    }
-  }
+// ── SCROLL PROGRESS BAR ──
+const _spEl = document.getElementById(‘scroll-progress’);
+if (_spEl) {
+  window.addEventListener(‘scroll’, () => {
+    const scrolled  = window.scrollY;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    _spEl.style.width = maxScroll > 0 ? (scrolled / maxScroll * 100) + ‘%’ : ‘0%’;
+  }, { passive: true });
+}
 
-  function selectType(el, price, days) {
-    document.querySelectorAll('.calc-option').forEach(function(o) { o.classList.remove('selected'); });
-    el.classList.add('selected');
-    calcBase = price;
-    calcDays = days;
-    updateCalc();
-  }
+// ── HERO PARALLAX ──
+const _hGrid = document.querySelector(‘.hero-grid’);
+const _hBg   = document.querySelector(‘.hero-bg’);
+window.addEventListener(‘scroll’, () => {
+  const y = window.scrollY;
+  if (_hGrid) _hGrid.style.transform = `translateY(${y * 0.22}px)`;
+  if (_hBg)   _hBg.style.transform   = `translateY(${y * 0.1}px)`;
+}, { passive: true });
 
-  function toggleExtra(el, price) {
-    if (el.classList.contains('selected')) {
-      el.classList.remove('selected');
-      calcExtras -= price;
-    } else {
-      el.classList.add('selected');
-      calcExtras += price;
-    }
-    updateCalc();
-  }
-
-  // ─── FIX #7 + Language Switch ───
-  function switchLang(lang) {
-    currentLang = lang;
-    var isAr = lang === 'ar';
-    document.body.classList.toggle('lang-ar', isAr);
-    document.documentElement.lang = lang;
-
-    // Update all data-i18n elements
-    document.querySelectorAll('[data-i18n]').forEach(function(el) {
-      var key = el.getAttribute('data-i18n');
-      if (CONTENT[lang] && CONTENT[lang][key] !== undefined) {
-        el.innerHTML = CONTENT[lang][key];
-      }
+// ── MAGNETIC BUTTONS ──
+document.querySelectorAll(‘.btn-gold, .btn-ghost, .nav-cta’).forEach(btn => {
+  let raf;
+  btn.addEventListener(‘mouseenter’, () => {
+    btn.style.transition = ‘transform 0.1s’;
+  });
+  btn.addEventListener(‘mousemove’, e => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      const r = btn.getBoundingClientRect();
+      const x = (e.clientX - r.left  - r.width  / 2) * 0.32;
+      const y = (e.clientY - r.top   - r.height / 2) * 0.32;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
     });
+  });
+  btn.addEventListener(‘mouseleave’, () => {
+    cancelAnimationFrame(raf);
+    btn.style.transition = ‘transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94)’;
+    btn.style.transform  = ‘translate(0,0)’;
+    setTimeout(() => { btn.style.transition = ‘’; }, 600);
+  });
+});
 
-    // FIX #7: Update bigNoEl
-    var bigNoEl = document.getElementById('bigNoEl');
-    if (bigNoEl) {
-      bigNoEl.innerHTML = isAr
-        ? '<span style="color:var(--rust);">لا</span> أقبل هذه المشاريع'
-        : '<span>НЕ</span> МОЯ РАБОТА';
-    }
+// ── CURSOR LABEL ON PROJECT CARDS ──
+const _curLabel = document.createElement(‘div’);
+_curLabel.id = ‘cursor-label’;
+document.body.appendChild(_curLabel);
+document.addEventListener(‘mousemove’, e => {
+  _curLabel.style.left = e.clientX + ‘px’;
+  _curLabel.style.top  = e.clientY + ‘px’;
+});
+document.querySelectorAll(‘.project-card’).forEach(card => {
+  card.addEventListener(‘mouseenter’, () => {
+    _curLabel.textContent = ‘OPEN’;
+    _curLabel.classList.add(‘show’);
+    cur.style.width      = ‘68px’;
+    cur.style.height     = ‘68px’;
+    cur.style.background = ‘rgba(212,168,67,0.92)’;
+    cur.style.mixBlendMode = ‘normal’;
+  });
+  card.addEventListener(‘mouseleave’, () => {
+    _curLabel.textContent = ‘’;
+    _curLabel.classList.remove(‘show’);
+    cur.style.width      = ‘’;
+    cur.style.height     = ‘’;
+    cur.style.background = ‘’;
+    cur.style.mixBlendMode = ‘difference’;
+  });
+});
 
-    // Update lang buttons
-    var btnRu = document.getElementById('btnRu');
-    var btnAr = document.getElementById('btnAr');
-    if (btnRu) btnRu.classList.toggle('active', !isAr);
-    if (btnAr) btnAr.classList.toggle('active', isAr);
-
-    // Update process detail if open
-    if (currentStep) showStep(currentStep);
-
-    // Update step card titles
-    var cards = document.querySelectorAll('.shred-card');
-    cards.forEach(function(card, i) {
-      var titleEl = card.querySelector('[data-i18n]');
-      if (titleEl && STEPS[lang] && STEPS[lang][i]) {
-        titleEl.textContent = STEPS[lang][i].title;
-      }
-    });
-
-    // Update calc
-    updateCalc();
-  }
-
-  // ─── MAIN INIT (FIX #3: wrapped in try/catch + DOMContentLoaded) ───
-  window.addEventListener('DOMContentLoaded', function() {
-    try {
-
-      // FIX #1: Add js-loaded class for hero animations
-      document.body.classList.add('js-loaded');
-
-      // FIX #2: Canvas null check
-      var canvas = document.getElementById('shredder-canvas');
-      var ctx = canvas ? canvas.getContext('2d') : null;
-      // ctx is available but shredder effect is optional
-      if (ctx) {
-        // Canvas ready but shredder visual not needed for core functionality
-      }
-
-      // ─── CURSOR ───
-      var cursor = document.getElementById('cursor');
-      var cursorRing = document.getElementById('cursor-ring');
-      if (cursor && cursorRing && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        document.addEventListener('mousemove', function(e) {
-          cursor.style.left = e.clientX + 'px';
-          cursor.style.top = e.clientY + 'px';
-          setTimeout(function() {
-            cursorRing.style.left = e.clientX + 'px';
-            cursorRing.style.top = e.clientY + 'px';
-          }, 60);
-        });
-        document.querySelectorAll('a, button, .shred-card, .calc-option, .extra-tag').forEach(function(el) {
-          el.addEventListener('mouseenter', function() {
-            if (cursor) { cursor.style.width = '16px'; cursor.style.height = '16px'; }
-            if (cursorRing) { cursorRing.style.width = '48px'; cursorRing.style.height = '48px'; }
-          });
-          el.addEventListener('mouseleave', function() {
-            if (cursor) { cursor.style.width = '8px'; cursor.style.height = '8px'; }
-            if (cursorRing) { cursorRing.style.width = '32px'; cursorRing.style.height = '32px'; }
-          });
-        });
-      }
-
-      // ─── REVEAL on scroll (FIX #9: counters work after crash fix) ───
-      if ('IntersectionObserver' in window) {
-        var revealObserver = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              revealObserver.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.12 });
-
-        document.querySelectorAll('.reveal').forEach(function(el) {
-          revealObserver.observe(el);
-        });
-
-        // ─── COUNTERS ───
-        var countersStarted = false;
-        var counterObserver = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting && !countersStarted) {
-              countersStarted = true;
-              document.querySelectorAll('[data-count]').forEach(function(el) {
-                var target = parseInt(el.getAttribute('data-count'), 10);
-                var current = 0;
-                var step = Math.ceil(target / 30);
-                var timer = setInterval(function() {
-                  current += step;
-                  if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                  }
-                  el.textContent = current;
-                }, 40);
-              });
-              counterObserver.disconnect();
-            }
-          });
-        }, { threshold: 0.5 });
-
-        var statsEl = document.querySelector('.hero-stats');
-        if (statsEl) counterObserver.observe(statsEl);
-      } else {
-        // Fallback: show all reveal elements
-        document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
-        document.querySelectorAll('[data-count]').forEach(function(el) {
-          el.textContent = el.getAttribute('data-count');
-        });
-      }
-
-      // Init calc display
-      updateCalc();
-
-    } catch(e) {
-      console.error('Portfolio init error:', e);
-      // FIX #3: Fallback — show all content
-      document.querySelectorAll('.hero-h1,.hero-tag,.hero-sub,.hero-ctas,.hero-stats')
-        .forEach(function(el) { el.style.opacity = '1'; el.style.transform = 'none'; });
-      document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
-      document.querySelectorAll('[data-count]').forEach(function(el) {
-        el.textContent = el.getAttribute('data-count');
-      });
+// ── STAGGER REVEAL FOR SERVICE CARDS ──
+const _sCards = document.querySelectorAll(‘.services-grid .service-card’);
+const _sObs = new IntersectionObserver(entries => {
+  entries.forEach((e, idx) => {
+    if (e.isIntersecting) {
+      const delay = parseInt(e.target.style.animationDelay) || 0;
+      setTimeout(() => e.target.classList.add(‘visible’), idx * 80);
+      _sObs.unobserve(e.target);
     }
   });
-  </script>
+}, { threshold: 0.08, rootMargin: ‘0px 0px -40px 0px’ });
+_sCards.forEach(c => { if (!c.classList.contains(‘reveal’)) c.classList.add(‘reveal’); _sObs.observe(c); });
+
+</script>
 </body>
 </html>
